@@ -14,8 +14,9 @@ blend weight per distance band and a small logistic re-ranker, both fitted outsi
 | Radar Contribution to LiDAR-Camera Fusion | daytime scenes, nuScenes blob 01, 10 October 2026 | [visualizing data/REPORT.md](visualizing%20data/REPORT.md), `REPORT.html` |
 | Radar Contribution to LiDAR-Camera Fusion, Day and Night | daytime plus the night and rain scenes of blob 10, 11 October 2026 | [visualizing data/REPORT_enhanced.md](visualizing%20data/REPORT_enhanced.md), `REPORT_enhanced.html` |
 | Radar Contribution to LiDAR-Camera Fusion with Degraded LiDAR | the daytime scenes with a random 25 percent of the LiDAR points kept, 12 October 2026 | [visualizing data/REPORT_degradation.md](visualizing%20data/REPORT_degradation.md), `REPORT_degradation.html` |
+| Radar Contribution When the LiDAR Cannot Measure Velocity | the daytime scenes with the LiDAR detector run on a single sweep, and on a single sweep with range-dependent point dropout, 12 October 2026 | [visualizing data/REPORT_velocity_degradation.md](visualizing%20data/REPORT_velocity_degradation.md), `REPORT_velocity_degradation.html` |
 
-The `visualizing data` folder is self-contained: the three reports, their figures, three rendered scene
+The `visualizing data` folder is self-contained: the four reports, their figures, three rendered scene
 animations (two daytime, one rain at night) and a player that replays them from small derived JSON
 files. Raw nuScenes data, detector outputs and fused result files are not in this repository.
 

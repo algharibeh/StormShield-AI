@@ -1,0 +1,484 @@
+{
+  "min0_max0_all": [
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "LiDAR",
+      "NDS": 0.578223401226711,
+      "mAP": 0.48318526341335166,
+      "mATE": 0.3037361274477877,
+      "mAVE": 0.5219036538870796
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "LiDAR + camera",
+      "NDS": 0.5790458890180581,
+      "mAP": 0.4863853411833374,
+      "mATE": 0.31041264324789797,
+      "mAVE": 0.515567176106003
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "+ radar velocity, single weight",
+      "NDS": 0.5789722304369782,
+      "mAP": 0.4863853411833374,
+      "mATE": 0.31041264324789797,
+      "mAVE": 0.5163037619168022
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "+ radar velocity, distance-aware",
+      "NDS": 0.5796786084514217,
+      "mAP": 0.4863853411833374,
+      "mATE": 0.31041264324789797,
+      "mAVE": 0.5092399817723675
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "Camera-heavier merge",
+      "NDS": 0.5779476189663941,
+      "mAP": 0.48648075791326467,
+      "mATE": 0.31376495385527264,
+      "mAVE": 0.5276870133777347
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "Camera-heavier merge + radar velocity",
+      "NDS": 0.577939203250465,
+      "mAP": 0.48648075791326467,
+      "mATE": 0.31376495385527264,
+      "mAVE": 0.5277711705370258
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "+ radar re-scoring",
+      "NDS": 0.5678338914030949,
+      "mAP": 0.4686336119925868,
+      "mATE": 0.3287823808376066,
+      "mAVE": 0.5453789163213811
+    },
+    {
+      "condition": "Single sweep",
+      "system": "LiDAR",
+      "NDS": 0.4752238525015967,
+      "mAP": 0.40239649598809335,
+      "mATE": 0.2918455958910853,
+      "mAVE": 1.291956685724621
+    },
+    {
+      "condition": "Single sweep",
+      "system": "LiDAR + camera",
+      "NDS": 0.4766091602332745,
+      "mAP": 0.4084482640453495,
+      "mATE": 0.3052103825062298,
+      "mAVE": 1.2659135570879414
+    },
+    {
+      "condition": "Single sweep",
+      "system": "+ radar velocity, single weight",
+      "NDS": 0.4766091602332745,
+      "mAP": 0.4084482640453495,
+      "mATE": 0.3052103825062298,
+      "mAVE": 1.0841587030981668
+    },
+    {
+      "condition": "Single sweep",
+      "system": "+ radar velocity, distance-aware",
+      "NDS": 0.4766091602332745,
+      "mAP": 0.4084482640453495,
+      "mATE": 0.3052103825062298,
+      "mAVE": 1.0359257176621628
+    },
+    {
+      "condition": "Single sweep",
+      "system": "Camera-heavier merge",
+      "NDS": 0.4775176946674563,
+      "mAP": 0.4080197742827994,
+      "mATE": 0.30986201926984547,
+      "mAVE": 1.2571011996866
+    },
+    {
+      "condition": "Single sweep",
+      "system": "Camera-heavier merge + radar velocity",
+      "NDS": 0.4775176946674563,
+      "mAP": 0.4080197742827994,
+      "mATE": 0.30986201926984547,
+      "mAVE": 1.077314713341288
+    },
+    {
+      "condition": "Single sweep",
+      "system": "+ radar re-scoring",
+      "NDS": 0.4730521399552793,
+      "mAP": 0.3958967036755348,
+      "mATE": 0.31422194767238837,
+      "mAVE": 1.2133472250242425
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "LiDAR",
+      "NDS": 0.41684526143182515,
+      "mAP": 0.3074495160846119,
+      "mATE": 0.3346281774130996,
+      "mAVE": 1.6556907096545554
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "LiDAR + camera",
+      "NDS": 0.42374063885517915,
+      "mAP": 0.325143652828109,
+      "mATE": 0.36568139925135923,
+      "mAVE": 1.5836333236426552
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "+ radar velocity, single weight",
+      "NDS": 0.42374063885517915,
+      "mAP": 0.325143652828109,
+      "mATE": 0.36568139925135923,
+      "mAVE": 1.3409199246715127
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "+ radar velocity, distance-aware",
+      "NDS": 0.42374063885517915,
+      "mAP": 0.325143652828109,
+      "mATE": 0.36568139925135923,
+      "mAVE": 1.2984126819330837
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "Camera-heavier merge",
+      "NDS": 0.42713412556686803,
+      "mAP": 0.32977555108961304,
+      "mATE": 0.37542738113208846,
+      "mAVE": 1.5770080346858246
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "Camera-heavier merge + radar velocity",
+      "NDS": 0.42713412556686803,
+      "mAP": 0.32977555108961304,
+      "mATE": 0.37542738113208846,
+      "mAVE": 1.3343120400302588
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "+ radar re-scoring",
+      "NDS": 0.4238387642813134,
+      "mAP": 0.3219515593969414,
+      "mATE": 0.38158168617142035,
+      "mAVE": 1.4227451519356633
+    }
+  ],
+  "min30_max0_all": [
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "LiDAR",
+      "NDS": 0.40042228464250795,
+      "mAP": 0.2566518765061255,
+      "mATE": 0.5136353389148963,
+      "mAVE": 0.5740448008116028
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "LiDAR + camera",
+      "NDS": 0.39884840945398353,
+      "mAP": 0.25739774807044546,
+      "mATE": 0.5202976893852069,
+      "mAVE": 0.5806415861498095
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "+ radar velocity, single weight",
+      "NDS": 0.4014895336553537,
+      "mAP": 0.25739774807044546,
+      "mATE": 0.5202976893852069,
+      "mAVE": 0.5542303441361082
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "+ radar velocity, distance-aware",
+      "NDS": 0.4016928775526404,
+      "mAP": 0.25739774807044546,
+      "mATE": 0.5202976893852069,
+      "mAVE": 0.5521969051632409
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "Camera-heavier merge",
+      "NDS": 0.3992212856339979,
+      "mAP": 0.2586199641576863,
+      "mATE": 0.526160617715696,
+      "mAVE": 0.5869361826010835
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "Camera-heavier merge + radar velocity",
+      "NDS": 0.4018080664935296,
+      "mAP": 0.2586199641576863,
+      "mATE": 0.526160617715696,
+      "mAVE": 0.5610683740057655
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "+ radar re-scoring",
+      "NDS": 0.3887434500514354,
+      "mAP": 0.235565193608337,
+      "mATE": 0.5346912528031926,
+      "mAVE": 0.5589509576051239
+    },
+    {
+      "condition": "Single sweep",
+      "system": "LiDAR",
+      "NDS": 0.291184907399051,
+      "mAP": 0.18290200622701286,
+      "mATE": 0.5145689629475585,
+      "mAVE": 1.3770758987362224
+    },
+    {
+      "condition": "Single sweep",
+      "system": "LiDAR + camera",
+      "NDS": 0.29169133896384414,
+      "mAP": 0.18666851007122534,
+      "mATE": 0.5424697069486962,
+      "mAVE": 1.3538339873951406
+    },
+    {
+      "condition": "Single sweep",
+      "system": "+ radar velocity, single weight",
+      "NDS": 0.3018704645138495,
+      "mAP": 0.18666851007122534,
+      "mATE": 0.5424697069486962,
+      "mAVE": 0.8982087444999465
+    },
+    {
+      "condition": "Single sweep",
+      "system": "+ radar velocity, distance-aware",
+      "NDS": 0.30496143090564404,
+      "mAP": 0.18666851007122534,
+      "mATE": 0.5424697069486962,
+      "mAVE": 0.8672990805820013
+    },
+    {
+      "condition": "Single sweep",
+      "system": "Camera-heavier merge",
+      "NDS": 0.29442463608063674,
+      "mAP": 0.18773540534351527,
+      "mATE": 0.5547611316136499,
+      "mAVE": 1.3108135742026779
+    },
+    {
+      "condition": "Single sweep",
+      "system": "Camera-heavier merge + radar velocity",
+      "NDS": 0.30800404432926876,
+      "mAP": 0.18773540534351527,
+      "mATE": 0.5547611316136499,
+      "mAVE": 0.8642059175136795
+    },
+    {
+      "condition": "Single sweep",
+      "system": "+ radar re-scoring",
+      "NDS": 0.2936748883789373,
+      "mAP": 0.17017966937734919,
+      "mATE": 0.5716539133752502,
+      "mAVE": 0.8759341875908043
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "LiDAR",
+      "NDS": 0.16562214913814147,
+      "mAP": 0.03571799212702159,
+      "mATE": 0.6361084437255572,
+      "mAVE": 1.5444837297330372
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "LiDAR + camera",
+      "NDS": 0.1961526985974421,
+      "mAP": 0.05693664079575399,
+      "mATE": 0.7292233263704393,
+      "mAVE": 1.329452400579505
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "+ radar velocity, single weight",
+      "NDS": 0.21131585011230167,
+      "mAP": 0.05693664079575399,
+      "mATE": 0.7292233263704393,
+      "mAVE": 0.8483684848514048
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "+ radar velocity, distance-aware",
+      "NDS": 0.21718737231468094,
+      "mAP": 0.05693664079575399,
+      "mATE": 0.7292233263704393,
+      "mAVE": 0.7896532628276123
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "Camera-heavier merge",
+      "NDS": 0.21068336868206994,
+      "mAP": 0.07175359051584851,
+      "mATE": 0.7599106845455813,
+      "mAVE": 1.2728545437359962
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "Camera-heavier merge + radar velocity",
+      "NDS": 0.22981918769644313,
+      "mAP": 0.07175359051584851,
+      "mATE": 0.7599106845455813,
+      "mAVE": 0.8086418098562682
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "+ radar re-scoring",
+      "NDS": 0.22791897190669735,
+      "mAP": 0.06181033194197594,
+      "mATE": 0.7792944857250557,
+      "mAVE": 0.7973757279425484
+    }
+  ],
+  "per_class_vel_err_min30": [
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "LiDAR + camera",
+      "car": 0.4573630851851265,
+      "truck": 0.33998619656336715,
+      "bus": 0.9890186064390887,
+      "pedestrian": 0.2913299437528849,
+      "motorcycle": 1.2427784108945892,
+      "bicycle": 0.481738169895426
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "+ radar velocity, single weight",
+      "car": 0.44160653190384436,
+      "truck": 0.31514261468917815,
+      "bus": 0.9273832767618312,
+      "pedestrian": 0.2891381900960399,
+      "motorcycle": 1.2495940328657458,
+      "bicycle": 0.3963268460669187
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "Camera-heavier merge",
+      "car": 0.45883639514855323,
+      "truck": 0.3555761018027705,
+      "bus": 0.9877333764233184,
+      "pedestrian": 0.2925308650174721,
+      "motorcycle": 1.2427784108945892,
+      "bicycle": 0.5151160350539705
+    },
+    {
+      "condition": "Clean LiDAR, 10 sweeps",
+      "system": "Camera-heavier merge + radar velocity",
+      "car": 0.44029848228653573,
+      "truck": 0.3263985029235256,
+      "bus": 0.9249437080928171,
+      "pedestrian": 0.29022176706039815,
+      "motorcycle": 1.2495940328657458,
+      "bicycle": 0.44243923811179414
+    },
+    {
+      "condition": "Single sweep",
+      "system": "LiDAR + camera",
+      "car": 1.5959090821893933,
+      "truck": 0.8961886670731116,
+      "bus": 3.082249437620639,
+      "pedestrian": 0.5768716274785115,
+      "motorcycle": 3.1374873282477336,
+      "bicycle": 1.140685356322679
+    },
+    {
+      "condition": "Single sweep",
+      "system": "+ radar velocity, single weight",
+      "car": 0.9985624067797874,
+      "truck": 0.5246702986859001,
+      "bus": 1.1504631478324876,
+      "pedestrian": 0.6405184860749792,
+      "motorcycle": 2.8859758432618023,
+      "bicycle": 0.5326703373221745
+    },
+    {
+      "condition": "Single sweep",
+      "system": "+ radar velocity, distance-aware",
+      "car": 0.9590193287032575,
+      "truck": 0.4971008520522648,
+      "bus": 0.9702689774555908,
+      "pedestrian": 0.6540938561377938,
+      "motorcycle": 2.8547854265191606,
+      "bicycle": 0.5228670839295712
+    },
+    {
+      "condition": "Single sweep",
+      "system": "Camera-heavier merge",
+      "car": 1.5699835091895549,
+      "truck": 0.9108630958018306,
+      "bus": 3.076849168371359,
+      "pedestrian": 0.5882279373724725,
+      "motorcycle": 2.8199467055136354,
+      "bicycle": 1.1143145453579408
+    },
+    {
+      "condition": "Single sweep",
+      "system": "Camera-heavier merge + radar velocity",
+      "car": 0.9896732090090821,
+      "truck": 0.5424144879879395,
+      "bus": 1.1461175878981222,
+      "pedestrian": 0.6486207837865011,
+      "motorcycle": 2.576829242600893,
+      "bicycle": 0.552959499969711
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "LiDAR + camera",
+      "car": 2.022150095572664,
+      "truck": 1.0794969059368016,
+      "bus": 3.1495508214700307,
+      "pedestrian": 0.906087915972594,
+      "motorcycle": 1.3822523872204338,
+      "bicycle": 1.4665454107256337
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "+ radar velocity, single weight",
+      "car": 1.26029540295731,
+      "truck": 0.6449679200757437,
+      "bus": 1.232677497322007,
+      "pedestrian": 0.9022531804885556,
+      "motorcycle": 1.308863250570442,
+      "bicycle": 0.8857727648562881
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "+ radar velocity, distance-aware",
+      "car": 1.2046372137628834,
+      "truck": 0.5812241599980907,
+      "bus": 0.9531715549426024,
+      "pedestrian": 0.9061043409659593,
+      "motorcycle": 1.2666070036573525,
+      "bicycle": 0.8486661612301336
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "Camera-heavier merge",
+      "car": 1.7416485540003726,
+      "truck": 1.1311029188759578,
+      "bus": 3.164574412160136,
+      "pedestrian": 0.9064843308132705,
+      "motorcycle": 1.1745929038407106,
+      "bicycle": 1.329661221357465
+    },
+    {
+      "condition": "Single sweep + range dropout",
+      "system": "Camera-heavier merge + radar velocity",
+      "car": 1.1402991495029955,
+      "truck": 0.6986494808948592,
+      "bus": 1.2239642153560424,
+      "pedestrian": 0.9019717207463144,
+      "motorcycle": 1.0815940805486894,
+      "bicycle": 0.8354628022507912
+    }
+  ]
+}
