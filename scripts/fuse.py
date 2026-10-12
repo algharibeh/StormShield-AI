@@ -158,16 +158,50 @@ def fit_velocity_blend(boxes):
     return best_a
 
 
-def nms_center(boxes, thresh=1.0, lidar_primary_radius=2.5):
-    """LiDAR-primary merge. LiDAR boxes are kept as they are (the detector already
-    applied NMS). A camera box is dropped if a same-class LiDAR box lies within
-    lidar_primary_radius metres, since monocular depth error makes it a duplicate,
-    and camera boxes suppress each other within thresh metres."""
+MERGE_MODE = "lidar-primary"   # set from --merge in main()
+WEAK_LIDAR_SCORE = 0.3         # set from --weak-lidar-score in main()
+
+
+def nms_center(boxes, thresh=1.0, lidar_primary_radius=2.5, mode=None, weak_score=None):
+    """Merge of LiDAR and camera boxes of one frame.
+
+    lidar-primary (default, the rule of every report so far): LiDAR boxes are kept
+    as they are (the detector already applied NMS). A camera box is dropped if a
+    same-class LiDAR box lies within lidar_primary_radius metres, since monocular
+    depth error makes it a duplicate, and camera boxes suppress each other within
+    thresh metres.
+
+    weak-lidar (camera-heavier): the same, except that a LiDAR box whose score is
+    below weak_score is replaced by a same-class camera box within the radius when
+    that camera box is at least as confident. Where the LiDAR is weak, the camera
+    box stands in, and radar then sets its velocity outright instead of blending a
+    small fraction into the LiDAR estimate. Box counts stay the same as a
+    replacement, never a duplicate."""
+    mode = mode or MERGE_MODE
+    weak_score = WEAK_LIDAR_SCORE if weak_score is None else weak_score
     lidar = [b for b in boxes if b["_modality"] == "lidar"]
+    cams = [b for b in boxes if b["_modality"] != "lidar"]
+    if mode == "weak-lidar":
+        replaced = set()
+        rescued = []
+        for b in sorted(cams, key=lambda x: -x["detection_score"]):
+            c = np.array(b["translation"][:2])
+            for i, k in enumerate(lidar):
+                if i in replaced or k["detection_name"] != b["detection_name"]:
+                    continue
+                if (k["detection_score"] < weak_score and b["detection_score"] >= k["detection_score"]
+                        and np.linalg.norm(np.array(k["translation"][:2]) - c) < lidar_primary_radius):
+                    replaced.add(i)
+                    rescued.append(b)
+                    break
+        lidar = [k for i, k in enumerate(lidar) if i not in replaced]
+        rescued_ids = {id(b) for b in rescued}
+        cams = [b for b in cams if id(b) not in rescued_ids]
+        # a rescued camera box stands in for a LiDAR box that survived the detector's own NMS,
+        # so it is kept outright and the remaining camera boxes are suppressed against it too
+        lidar = lidar + rescued
     keep = list(lidar)
-    for b in boxes:
-        if b["_modality"] == "lidar":
-            continue
+    for b in cams:
         c = np.array(b["translation"][:2])
         ok = True
         for k in keep:
@@ -222,7 +256,16 @@ def main():
     ap.add_argument("--blend-a", type=float, default=None,
                     help="pin the LiDAR radar-velocity blend weight a in v = (1-a) v_lidar + a v_radar "
                          "instead of fitting it on the training split (used for like-for-like rows)")
+    ap.add_argument("--merge", choices=["lidar-primary", "weak-lidar"], default="lidar-primary",
+                    help="lidar-primary: camera boxes only where no same-class LiDAR box is within 2.5 m (default); "
+                         "weak-lidar: a LiDAR box scoring below --weak-lidar-score is replaced by a same-class "
+                         "camera box within 2.5 m that is at least as confident (camera-heavier merge)")
+    ap.add_argument("--weak-lidar-score", type=float, default=0.3,
+                    help="LiDAR score below which the weak-lidar merge lets a camera box stand in")
     args = ap.parse_args()
+    global MERGE_MODE, WEAK_LIDAR_SCORE
+    MERGE_MODE, WEAK_LIDAR_SCORE = args.merge, args.weak_lidar_score
+    print(f"merge rule: {MERGE_MODE}" + (f" (LiDAR score < {WEAK_LIDAR_SCORE})" if MERGE_MODE == "weak-lidar" else ""))
 
     nusc = load_nusc(args.dataroot, args.version)
     if args.version.endswith("mini"):
