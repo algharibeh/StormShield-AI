@@ -1,0 +1,37 @@
+{
+  "gt_counts": {
+    "car": 3457,
+    "traffic_cone": 82,
+    "bicycle": 45,
+    "barrier": 259,
+    "motorcycle": 346,
+    "truck": 189,
+    "pedestrian": 120
+  },
+  "min_gt": 20,
+  "rows": {
+    "L+C+Ra": {
+      "mAP_present": 0.3500461768898132,
+      "mAVE_present": 0.5015872382799872,
+      "mATE_present": 0.31103725036726004,
+      "car_AP": 0.8517406097363143,
+      "car_AVE": 0.48748849992756815,
+      "classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle",
+        "bicycle",
+        "traffic_cone",
+        "barrier"
+      ],
+      "vel_classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle",
+        "bicycle"
+      ]
+    }
+  }
+}

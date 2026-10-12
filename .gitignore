@@ -1,0 +1,14 @@
+# raw nuScenes data: licensed, 35 GB, never commit
+data/
+# detector outputs and fused configurations: hundreds of MB, regenerate from the notebook and scripts
+detections/
+results/fused*/
+results/eval*/*/
+results/edge_report_test.png
+*.tgz
+# local environment and logs
+.venv/
+*.log
+__pycache__/
+*.pyc
+# keep: scripts/, colab/, visualizing data/ (small derived JSON + GIFs), results/*.json summaries, README.md

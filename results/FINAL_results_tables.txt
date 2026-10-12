@@ -1,0 +1,71 @@
+=== FINAL TABLES, 10 Oct 2026 (official nuScenes devkit, 914 val frames, blob 01) ===
+
+--- all configurations (results/run_v3.log)
+slice: min0_max0_all
+config   samples     NDS     mAP    mATE    mAVE    mAOE
+C+R          914   0.407   0.314   0.686   1.635   0.463
+C+Rv         914   0.406   0.315   0.694   1.469   0.489
+C            914   0.406   0.315   0.694   2.071   0.489
+L+C+R        914   0.568   0.469   0.329   0.545   0.383
+L+C+Rv       914   0.579   0.486   0.310   0.516   0.404
+L+C          914   0.579   0.486   0.310   0.516   0.404
+L+R          914   0.569   0.470   0.318   0.553   0.382
+L+Rv         914   0.578   0.483   0.304   0.522   0.397
+L            914   0.578   0.483   0.304   0.522   0.397
+slice: min30_max0_all
+config   samples     NDS     mAP    mATE    mAVE    mAOE
+C+R          914   0.263   0.103   0.935   0.697   0.738
+C+Rv         914   0.262   0.105   0.944   0.694   0.757
+C            914   0.231   0.105   0.944   1.275   0.757
+L+C+R        914   0.389   0.236   0.535   0.559   0.620
+L+C+Rv       914   0.401   0.257   0.520   0.554   0.613
+L+C          914   0.399   0.257   0.520   0.581   0.613
+L+R          914   0.399   0.249   0.515   0.564   0.594
+L+Rv         914   0.402   0.257   0.514   0.559   0.605
+L            914   0.400   0.257   0.514   0.574   0.605
+
+--- L+C focus: near / far slices (results/run_lc_buckets.log)
+slice: min0_max30_all
+config   samples     NDS     mAP    mATE    mAVE    mAOE
+L+C+R        914   0.621   0.562   0.314   0.541   0.342
+L+C+Rv       914   0.638   0.584   0.290   0.496   0.356
+L+C          914   0.638   0.584   0.290   0.491   0.356
+slice: min40_max0_all
+config   samples     NDS     mAP    mATE    mAVE    mAOE
+L+C+R        914   0.228   0.102   0.713   0.616   0.744
+L+C+Rv       914   0.244   0.133   0.710   0.602   0.761
+L+C          914   0.242   0.133   0.710   0.616   0.761
+
+--- L+C with distance-aware radar weight (results/run_adaptive.log)
+slice: min0_max0_all
+config   samples     NDS     mAP    mATE    mAVE    mAOE
+L+C+Ra       914   0.580   0.486   0.310   0.509   0.404
+L+C+Rv       914   0.579   0.486   0.310   0.516   0.404
+L+C          914   0.579   0.486   0.310   0.516   0.404
+slice: min30_max0_all
+config   samples     NDS     mAP    mATE    mAVE    mAOE
+L+C+Ra       914   0.402   0.257   0.520   0.552   0.613
+L+C+Rv       914   0.401   0.257   0.520   0.554   0.613
+L+C          914   0.399   0.257   0.520   0.581   0.613
+slice: min40_max0_all
+config   samples     NDS     mAP    mATE    mAVE    mAOE
+L+C+Ra       914   0.244   0.133   0.710   0.596   0.761
+L+C+Rv       914   0.244   0.133   0.710   0.602   0.761
+L+C          914   0.242   0.133   0.710   0.616   0.761
+ALL_DONE
+
+--- distance-aware weights fitted on train (results/run_blend.log)
+fit lidar  (0, 20): n= 9950 a=0.05 err 0.202 -> 0.200
+fit lidar  (20, 30): n= 7792 a=0.05 err 0.225 -> 0.222
+fit lidar  (30, 40): n= 4513 a=0.10 err 0.345 -> 0.338
+fit lidar  (40, 1000000000.0): n= 2368 a=0.30 err 0.412 -> 0.378
+fit camera (0, 20): n= 9608 a=0.80 err 0.527 -> 0.426
+fit camera (20, 30): n= 7150 a=0.80 err 0.557 -> 0.440
+fit camera (30, 40): n= 3916 a=0.90 err 0.824 -> 0.597
+fit camera (40, 1000000000.0): n= 2178 a=0.95 err 0.863 -> 0.507
+wrote results/fused_lc/L+C+Ra.json
+val (0, 20): n= 9290 no-radar 0.452 fixed0.1 0.442 adaptive 0.403
+val (20, 30): n= 5623 no-radar 0.591 fixed0.1 0.569 adaptive 0.482
+val (30, 40): n= 2948 no-radar 0.934 fixed0.1 0.882 adaptive 0.693
+val (40, 1000000000.0): n= 1704 no-radar 0.930 fixed0.1 0.873 adaptive 0.635
+BLEND_DONE

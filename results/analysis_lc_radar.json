@@ -1,0 +1,181 @@
+{
+  "n_frames": 914,
+  "n_true_positives": 18403,
+  "frac_tp_with_radar": 0.5202412650111395,
+  "overall": {
+    "name": "all true positives",
+    "n": 18403,
+    "err_base": 0.29298442131694097,
+    "err_radar": 0.2888072554372701,
+    "change_pct": -1.4257296892766025,
+    "frac_with_radar": 0.5202412650111395
+  },
+  "by_distance": [
+    {
+      "name": "0 to 10 m",
+      "n": 2927,
+      "err_base": 0.15441091989335423,
+      "err_radar": 0.15436983262776846,
+      "change_pct": -0.02660904139043289,
+      "frac_with_radar": 0.34813802528185855
+    },
+    {
+      "name": "10 to 20 m",
+      "n": 6515,
+      "err_base": 0.21217870418797194,
+      "err_radar": 0.2150203388707235,
+      "change_pct": 1.3392647926787777,
+      "frac_with_radar": 0.5387567152724482
+    },
+    {
+      "name": "20 to 30 m",
+      "n": 4870,
+      "err_base": 0.2998482311466859,
+      "err_radar": 0.29737963695432185,
+      "change_pct": -0.823281225613241,
+      "frac_with_radar": 0.5591375770020534
+    },
+    {
+      "name": "30 to 40 m",
+      "n": 2874,
+      "err_base": 0.5031814433577803,
+      "err_radar": 0.4869288799618096,
+      "change_pct": -3.2299608044993984,
+      "frac_with_radar": 0.5313152400835073
+    },
+    {
+      "name": "40 to 50 m",
+      "n": 1197,
+      "err_base": 0.5252448058430192,
+      "err_radar": 0.5038359974472535,
+      "change_pct": -4.075967655006995,
+      "frac_with_radar": 0.6516290726817042
+    }
+  ],
+  "by_speed": [
+    {
+      "name": "parked, under 0.5 m/s",
+      "n": 12619,
+      "err_base": 0.08207398147774891,
+      "err_radar": 0.0830069946933323,
+      "change_pct": 1.136795362896255,
+      "frac_with_radar": 0.5316586100324907
+    },
+    {
+      "name": "slow, 0.5 to 3 m/s",
+      "n": 3740,
+      "err_base": 0.4475898464514999,
+      "err_radar": 0.44270077420190107,
+      "change_pct": -1.0923108038217322,
+      "frac_with_radar": 0.3802139037433155
+    },
+    {
+      "name": "moving, over 3 m/s",
+      "n": 2044,
+      "err_base": 1.3121891915358812,
+      "err_radar": 1.277766027525348,
+      "change_pct": -2.623338481415312,
+      "frac_with_radar": 0.7059686888454012
+    }
+  ],
+  "by_origin": [
+    {
+      "name": "lidar-origin boxes",
+      "n": 18289,
+      "err_base": 0.28943214109336496,
+      "err_radar": 0.2870598688500058,
+      "change_pct": -0.8196298567248368,
+      "frac_with_radar": 0.5206408223522336
+    },
+    {
+      "name": "camera-origin boxes",
+      "n": 114,
+      "err_base": 0.8628761143781749,
+      "err_radar": 0.5691401790730343,
+      "change_pct": -34.04149569220829,
+      "frac_with_radar": 0.45614035087719296
+    }
+  ],
+  "by_class": [
+    {
+      "name": "car",
+      "n": 6022,
+      "err_base": 0.468151527219283,
+      "err_radar": 0.4582413950998099,
+      "change_pct": -2.1168642081202034,
+      "frac_with_radar": 0.6170707406177349
+    },
+    {
+      "name": "truck",
+      "n": 780,
+      "err_base": 0.41137294979502637,
+      "err_radar": 0.4018906927750452,
+      "change_pct": -2.3050268678837234,
+      "frac_with_radar": 0.8692307692307693
+    },
+    {
+      "name": "bus",
+      "n": 220,
+      "err_base": 1.0881105250073555,
+      "err_radar": 0.977639832378405,
+      "change_pct": -10.152524958639079,
+      "frac_with_radar": 0.9090909090909091
+    },
+    {
+      "name": "trailer",
+      "n": 26,
+      "err_base": 0.4824169877202882,
+      "err_radar": 0.5720094358963801,
+      "change_pct": 18.5715782106825,
+      "frac_with_radar": 0.9230769230769231
+    },
+    {
+      "name": "construction_vehicle",
+      "n": 179,
+      "err_base": 0.09758880141350829,
+      "err_radar": 0.0987721982737267,
+      "change_pct": 1.2126359203901518,
+      "frac_with_radar": 0.8491620111731844
+    },
+    {
+      "name": "pedestrian",
+      "n": 4750,
+      "err_base": 0.33857308163710037,
+      "err_radar": 0.3388322950495784,
+      "change_pct": 0.07656054971194375,
+      "frac_with_radar": 0.3951578947368421
+    },
+    {
+      "name": "motorcycle",
+      "n": 57,
+      "err_base": 0.9826842306261451,
+      "err_radar": 0.9685478446726683,
+      "change_pct": -1.438548163581436,
+      "frac_with_radar": 0.3333333333333333
+    },
+    {
+      "name": "bicycle",
+      "n": 278,
+      "err_base": 0.37645889577528824,
+      "err_radar": 0.3522244260904104,
+      "change_pct": -6.437480945952632,
+      "frac_with_radar": 0.5107913669064749
+    }
+  ],
+  "moving_far": {
+    "name": "moving, beyond 30 m",
+    "n": 853,
+    "err_base": 1.483197229550273,
+    "err_radar": 1.4060698047662217,
+    "change_pct": -5.200078805934501,
+    "frac_with_radar": 0.772567409144197
+  },
+  "moving_with_radar": {
+    "name": "moving, with radar returns",
+    "n": 1443,
+    "err_base": 1.2482141458587233,
+    "err_radar": 1.1994539606629295,
+    "change_pct": -3.9063958181829928,
+    "frac_with_radar": 1.0
+  }
+}

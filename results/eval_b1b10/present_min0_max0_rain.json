@@ -1,0 +1,146 @@
+{
+  "gt_counts": {
+    "car": 490,
+    "motorcycle": 18,
+    "truck": 12,
+    "pedestrian": 29
+  },
+  "min_gt": 20,
+  "rows": {
+    "C+R": {
+      "mAP_present": 0.22704114164218697,
+      "mAVE_present": 0.6553660478367538,
+      "mATE_present": 0.5484988688412196,
+      "car_AP": 0.29233403331853136,
+      "car_AVE": 0.9543159067008546,
+      "classes": [
+        "car",
+        "pedestrian"
+      ],
+      "vel_classes": [
+        "car",
+        "pedestrian"
+      ]
+    },
+    "C+Rv": {
+      "mAP_present": 0.20823754985352694,
+      "mAVE_present": 0.637117177332742,
+      "mATE_present": 0.5435237715755982,
+      "car_AP": 0.28250316037916423,
+      "car_AVE": 0.9182613856963033,
+      "classes": [
+        "car",
+        "pedestrian"
+      ],
+      "vel_classes": [
+        "car",
+        "pedestrian"
+      ]
+    },
+    "C": {
+      "mAP_present": 0.20823754985352694,
+      "mAVE_present": 1.2263560987961448,
+      "mATE_present": 0.5435237715755982,
+      "car_AP": 0.28250316037916423,
+      "car_AVE": 2.073579070068371,
+      "classes": [
+        "car",
+        "pedestrian"
+      ],
+      "vel_classes": [
+        "car",
+        "pedestrian"
+      ]
+    },
+    "L+C+R": {
+      "mAP_present": 0.4165447640167025,
+      "mAVE_present": 0.4351124474970389,
+      "mATE_present": 0.1525294182736498,
+      "car_AP": 0.7692185502583788,
+      "car_AVE": 0.48293246827317016,
+      "classes": [
+        "car",
+        "pedestrian"
+      ],
+      "vel_classes": [
+        "car",
+        "pedestrian"
+      ]
+    },
+    "L+C+Rv": {
+      "mAP_present": 0.4381723659994073,
+      "mAVE_present": 0.4174115545506693,
+      "mATE_present": 0.15309570036563058,
+      "car_AP": 0.8157589967987093,
+      "car_AVE": 0.4454049898814069,
+      "classes": [
+        "car",
+        "pedestrian"
+      ],
+      "vel_classes": [
+        "car",
+        "pedestrian"
+      ]
+    },
+    "L+C": {
+      "mAP_present": 0.4381723659994073,
+      "mAVE_present": 0.439584994837358,
+      "mATE_present": 0.15309570036563058,
+      "car_AP": 0.8157589967987093,
+      "car_AVE": 0.46516026043932124,
+      "classes": [
+        "car",
+        "pedestrian"
+      ],
+      "vel_classes": [
+        "car",
+        "pedestrian"
+      ]
+    },
+    "L+R": {
+      "mAP_present": 0.44266819538474333,
+      "mAVE_present": 0.44118545678252485,
+      "mATE_present": 0.15263375823918673,
+      "car_AP": 0.820913368820006,
+      "car_AVE": 0.48968986635534695,
+      "classes": [
+        "car",
+        "pedestrian"
+      ],
+      "vel_classes": [
+        "car",
+        "pedestrian"
+      ]
+    },
+    "L+Rv": {
+      "mAP_present": 0.4403095383495565,
+      "mAVE_present": 0.41951589007759227,
+      "mATE_present": 0.1522944985392932,
+      "car_AP": 0.8200333414990078,
+      "car_AVE": 0.44478721554535317,
+      "classes": [
+        "car",
+        "pedestrian"
+      ],
+      "vel_classes": [
+        "car",
+        "pedestrian"
+      ]
+    },
+    "L": {
+      "mAP_present": 0.4403095383495565,
+      "mAVE_present": 0.4420935714810639,
+      "mATE_present": 0.1522944985392932,
+      "car_AP": 0.8200333414990078,
+      "car_AVE": 0.46438002809773604,
+      "classes": [
+        "car",
+        "pedestrian"
+      ],
+      "vel_classes": [
+        "car",
+        "pedestrian"
+      ]
+    }
+  }
+}

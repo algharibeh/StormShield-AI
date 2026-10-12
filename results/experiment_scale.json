@@ -1,0 +1,16 @@
+{
+  "train_frames": 2462,
+  "val_frames": 914,
+  "lidar_boxes_train": 290756,
+  "lidar_boxes_val": 108430,
+  "camera_boxes_train": 175179,
+  "camera_boxes_val": 77133,
+  "radar_returns_val": 202521,
+  "radar_returns_train": 533648,
+  "gt_boxes_val": 30274,
+  "gt_boxes_train": 75362,
+  "fused_boxes_val": 133655,
+  "fused_boxes_val_score_ge_0.3": 32443,
+  "lidar_sweep_files": 29323,
+  "camera_images": 20256
+}

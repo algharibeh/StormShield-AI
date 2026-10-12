@@ -1,0 +1,194 @@
+{
+  "gt_counts": {
+    "car": 1627,
+    "traffic_cone": 17,
+    "barrier": 159,
+    "motorcycle": 118,
+    "truck": 115,
+    "pedestrian": 52,
+    "bicycle": 2
+  },
+  "min_gt": 20,
+  "rows": {
+    "C+R": {
+      "mAP_present": 0.03184245183691293,
+      "mAVE_present": 1.3359700028589572,
+      "mATE_present": 0.9505265403792527,
+      "car_AP": 0.133351002107914,
+      "car_AVE": 1.6336889321155368,
+      "classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle",
+        "barrier"
+      ],
+      "vel_classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle"
+      ]
+    },
+    "C+Rv": {
+      "mAP_present": 0.030109711720261573,
+      "mAVE_present": 1.3672248792080302,
+      "mATE_present": 0.9502961032506324,
+      "car_AP": 0.12723965678960966,
+      "car_AVE": 1.689631497661713,
+      "classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle",
+        "barrier"
+      ],
+      "vel_classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle"
+      ]
+    },
+    "C": {
+      "mAP_present": 0.030109711720261573,
+      "mAVE_present": 2.902555653780749,
+      "mATE_present": 0.9502961032506324,
+      "car_AP": 0.12723965678960966,
+      "car_AVE": 2.7068094890497023,
+      "classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle",
+        "barrier"
+      ],
+      "vel_classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle"
+      ]
+    },
+    "L+C+R": {
+      "mAP_present": 0.28122476566775856,
+      "mAVE_present": 0.754672025180569,
+      "mATE_present": 0.41775799005670766,
+      "car_AP": 0.47396387111860927,
+      "car_AVE": 0.7961487086136939,
+      "classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle",
+        "barrier"
+      ],
+      "vel_classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle"
+      ]
+    },
+    "L+C+Rv": {
+      "mAP_present": 0.2934035826229549,
+      "mAVE_present": 0.7248077701281295,
+      "mATE_present": 0.41622873707652275,
+      "car_AP": 0.5734399787823813,
+      "car_AVE": 0.7761878900355036,
+      "classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle",
+        "barrier"
+      ],
+      "vel_classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle"
+      ]
+    },
+    "L+C": {
+      "mAP_present": 0.2934035826229549,
+      "mAVE_present": 0.7598511962646546,
+      "mATE_present": 0.41622873707652275,
+      "car_AP": 0.5734399787823813,
+      "car_AVE": 0.8071746513308916,
+      "classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle",
+        "barrier"
+      ],
+      "vel_classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle"
+      ]
+    },
+    "L+R": {
+      "mAP_present": 0.30576247324470823,
+      "mAVE_present": 0.766095705376526,
+      "mATE_present": 0.41508730365461066,
+      "car_AP": 0.585750687833629,
+      "car_AVE": 0.7719570592200345,
+      "classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle",
+        "barrier"
+      ],
+      "vel_classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle"
+      ]
+    },
+    "L+Rv": {
+      "mAP_present": 0.29606585333618457,
+      "mAVE_present": 0.720516209229767,
+      "mATE_present": 0.4146098176006946,
+      "car_AP": 0.5858318917884148,
+      "car_AVE": 0.7592446601458578,
+      "classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle",
+        "barrier"
+      ],
+      "vel_classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle"
+      ]
+    },
+    "L": {
+      "mAP_present": 0.29606585333618457,
+      "mAVE_present": 0.7546996223788056,
+      "mATE_present": 0.4146098176006946,
+      "car_AP": 0.5858318917884148,
+      "car_AVE": 0.7866054819372436,
+      "classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle",
+        "barrier"
+      ],
+      "vel_classes": [
+        "car",
+        "truck",
+        "pedestrian",
+        "motorcycle"
+      ]
+    }
+  }
+}
