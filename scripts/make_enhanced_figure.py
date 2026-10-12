@@ -39,7 +39,15 @@ def load_rows():
     cam = [pair(day, "C", "C+Rv", "mAVE"), pair(day30, "C", "C+Rv", "mAVE"),
            pair(night, "C", "C+Rv", "mAVE_present"), pair(night30, "C", "C+Rv", "mAVE_present"),
            pair(rain, "C", "C+Rv", "mAVE")]
-    return conds, fused, cam
+    # the LiDAR-degradation row (25 percent of the points) exists for the fused system only;
+    # the camera detections are the clean ones, so the camera panel keeps its five conditions
+    fused_conds = list(conds)
+    deg, deg30 = "results/eval_keep25/summary_min0_max0_all.json", "results/eval_keep25/summary_min30_max0_all.json"
+    if os.path.exists(deg) and os.path.exists(deg30):
+        fused_conds += ["Day, 25 % LiDAR, full", "Day, 25 % LiDAR, beyond 30 m"]
+        fused += [pair(json.load(open(deg)), "L+C", "L+C+Rv", "mAVE"),
+                  pair(json.load(open(deg30)), "L+C", "L+C+Rv", "mAVE")]
+    return conds, fused, cam, fused_conds
 
 
 def panel(ax, conds, rows, title, base_label):
@@ -77,12 +85,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="visualizing data/figures/velocity_error_by_condition.png")
     args = ap.parse_args()
-    conds, fused, cam = load_rows()
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.8), dpi=130)
-    panel(axes[0], conds, fused, "LiDAR + camera system", "LiDAR + camera")
+    conds, fused, cam, fused_conds = load_rows()
+    widths = [len(fused_conds), len(conds)]
+    fig, axes = plt.subplots(1, 2, figsize=(13.5, 4.8), dpi=130, gridspec_kw={"width_ratios": widths})
+    panel(axes[0], fused_conds, fused, "LiDAR + camera system", "LiDAR + camera")
     panel(axes[1], conds, cam, "Camera alone", "camera")
     fig.text(0.01, 0.01, "Night bars: mean over the classes present in the night scenes. Day and rain bars: official devkit "
-             "values over all ten classes. Rain at night: 120 frames.", fontsize=8, color=MUTED)
+             "values over all ten classes. Rain at night: 120 frames. 25 % LiDAR: a random quarter of the LiDAR "
+             "points kept, camera unchanged.", fontsize=8, color=MUTED)
     fig.tight_layout(rect=(0, 0.04, 1, 1))
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     fig.savefig(args.out)

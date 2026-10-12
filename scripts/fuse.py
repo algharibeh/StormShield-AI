@@ -219,6 +219,9 @@ def main():
     ap.add_argument("--fit-on", choices=["cv", "train"], default="cv",
                     help="cv: scene-level 5-fold cross-validation over the validation scenes (default); "
                          "train: fit on training-split scenes (biased, the pretrained detectors saw them)")
+    ap.add_argument("--blend-a", type=float, default=None,
+                    help="pin the LiDAR radar-velocity blend weight a in v = (1-a) v_lidar + a v_radar "
+                         "instead of fitting it on the training split (used for like-for-like rows)")
     args = ap.parse_args()
 
     nusc = load_nusc(args.dataroot, args.version)
@@ -238,7 +241,9 @@ def main():
     va_boxes, Xva, yva = build_rows(nusc, val_tokens, dets, with_gt=True)
     mod_tr = np.array([b["_modality"] for b in tr_boxes])
     mod_va = np.array([b["_modality"] for b in va_boxes])
-    blend_a = fit_velocity_blend(tr_boxes)
+    fitted_a = fit_velocity_blend(tr_boxes)
+    blend_a = fitted_a if args.blend_a is None else float(args.blend_a)
+    print(f"velocity blend weight used: a = {blend_a:.2f}" + ("" if args.blend_a is None else f" (pinned; fitted value was {fitted_a:.1f})"))
     print(f"re-scorer fitted by: {args.fit_on}")
 
     # raw single-modality configs, and velocity-only radar variants (scores untouched)
