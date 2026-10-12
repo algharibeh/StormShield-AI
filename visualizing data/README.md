@@ -1,6 +1,6 @@
 # What radar adds to LiDAR + camera detection: an animated replay
 
-Two write-ups live here. [REPORT.md](REPORT.md) is the daytime study of 10 October 2026 (nuScenes blob 01, scenes 0093 and 0101). [REPORT_enhanced.md](REPORT_enhanced.md) extends it with the night and rain scenes of blob 10 (11 October 2026) and adds the rain-at-night scene 1065 to the player. Each has an `.html` twin that plays the MP4 clips offline.
+Three write-ups live here. [REPORT.md](REPORT.md) is the daytime study of 10 October 2026 (nuScenes blob 01, scenes 0093 and 0101). [REPORT_enhanced.md](REPORT_enhanced.md) extends it with the night and rain scenes of blob 10 (11 October 2026) and adds the rain-at-night scene 1065 to the player. [REPORT_degradation.md](REPORT_degradation.md) repeats the daytime measurement with a random 25 percent of the LiDAR points kept (12 October 2026). Each has an `.html` twin that plays the MP4 clips offline.
 
 This folder is self-contained. It replays nuScenes driving scenes and shows,
 frame by frame, the LiDAR + camera detections next to the same detections

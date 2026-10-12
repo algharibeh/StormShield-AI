@@ -1,0 +1,320 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Radar Contribution to LiDAR-Camera Fusion with Degraded LiDAR</title><style>body{font-family:Segoe UI,Arial,sans-serif;max-width:980px;margin:32px auto;padding:0 20px;color:#222;line-height:1.5}
+table{border-collapse:collapse;margin:12px 0;font-size:14px}th,td{border:1px solid #ddd;padding:5px 9px}th{background:#f4f4f4}
+img,video{max-width:100%}code{background:#f4f4f4;padding:1px 4px}pre{background:#f4f4f4;padding:10px;overflow:auto}
+h1{font-size:28px}h2{margin-top:34px;border-bottom:1px solid #eee}em{color:#444}</style></head><body><h1>Radar Contribution to LiDAR-Camera Fusion with Degraded LiDAR</h1>
+<p><em>nuScenes, inference-only late fusion on the 914 daytime validation frames of blob 01 with a random 25 percent of the LiDAR points kept. 12 October 2026. This report stands beside <a href="REPORT.md">REPORT.md</a>, the daytime study of 10 October, and <a href="REPORT_enhanced.md">REPORT_enhanced.md</a>, the day-and-night study of 11 October; both are unchanged.</em></p>
+<h2>Summary</h2>
+<p>Degrading the LiDAR to a random quarter of its points costs the LiDAR plus camera system 1.7 NDS points and 3.6 mAP points, and radar's contribution stays the size it was with clean LiDAR: nothing at full range, and a 3.5 percent cut in far-range velocity error with the fixed weight or 5.1 percent with the distance-aware weight, against 4.6 and 5.0 percent with clean LiDAR. The question behind the run was whether radar contributes more to the fused system once the LiDAR itself is weaker. On this degradation it does not, measurably: the refitted far-range radar weights rise, which says the fusion leans harder on radar when the LiDAR's own velocities get noisier, but the error it removes is about the same, and the difference between the two conditions is within the noise of 914 frames. All numbers come from the official nuScenes devkit on the same validation frames, ground truth, camera detections and fusion rules as the daytime report, with public pretrained detectors and no training.</p>
+<ul>
+<li><strong>Degradation.</strong> LiDAR-only mAP falls from 0.483 to 0.445 at full range and from 0.257 to 0.213 beyond 30 m. Motorcycle AP halves (0.167 to 0.082) and far pedestrian AP falls from 0.708 to 0.600. The fused system's NDS goes from 0.579 to 0.562.</li>
+<li><strong>Radar velocity, full range.</strong> No change in either condition: 0.516 m/s with or without radar on clean LiDAR, 0.476 to 0.478 m/s on degraded LiDAR. The distance-aware weight takes 0.509 and 0.468 m/s.</li>
+<li><strong>Radar velocity, beyond 30 m.</strong> Clean: 0.581 to 0.554 m/s (fixed weight) and 0.552 m/s (distance-aware). Degraded: 0.626 to 0.604 and 0.594 m/s. The relative cuts are 4.6 and 5.0 percent clean against 3.5 and 5.1 percent degraded.</li>
+<li><strong>Weights.</strong> The single LiDAR velocity weight refits to 0.1 on degraded training frames, the clean value. The distance-aware weights on LiDAR-origin boxes refit to 0.05, 0.10, 0.20 and 0.45 for 0 to 20, 20 to 30, 30 to 40 and beyond 40 m, against 0.05, 0.05, 0.10 and 0.30 clean; the camera-origin weights are unchanged at 0.80, 0.80, 0.90 and 0.95.</li>
+<li><strong>Re-scoring still hurts, by more.</strong> 1.5 NDS points at full range under degradation against 1.1 clean, and 1.8 mAP points beyond 30 m against 2.1.</li>
+<li><strong>Detection accuracy never moves with radar velocity</strong>, because it only edits velocities and never adds or removes a box; what the degradation took from mAP, radar cannot give back in this design.</li>
+</ul>
+<p><img alt="Velocity error with and without radar, clean against degraded LiDAR" src="figures/velocity_error_degradation.png" /></p>
+<p><em>Mean velocity error of the LiDAR + camera system without radar, with the fixed radar weight and with the distance-aware weight, on clean LiDAR and on 25 percent of the points, at full range and beyond 30 m. The labels above each group are the relative change with the fixed and the distance-aware weight.</em></p>
+<h2>Setup</h2>
+<p>Everything except the LiDAR point cloud is the daytime report's: the same 914 validation keyframes of blob 01, the same ground truth, the same camera detections, the same radar association, fusion rules and evaluation. The LiDAR detections were regenerated with the point cloud thinned before the detector.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data</td>
+<td>nuScenes v1.0 trainval, blob 01: 85 daytime scenes, Boston and Singapore, dry; 62 training scenes (2,462 keyframes) used to fit the velocity weights, 23 validation scenes (914 keyframes) for the numbers</td>
+</tr>
+<tr>
+<td>Degradation</td>
+<td>A uniform random 25 percent of the points of the aggregated cloud (keyframe plus nine sweeps), applied by a <code>PointSample</code> step after the multi-sweep loader, one random draw, on validation and training frames alike. The detector is the published checkpoint, not retrained</td>
+</tr>
+<tr>
+<td>What it stands for</td>
+<td>Sparse returns, as from a cheaper or longer-range sensor. Not weather: rain and fog remove points selectively, by range and reflectivity, and add clutter</td>
+</tr>
+<tr>
+<td>LiDAR detector</td>
+<td>CenterPoint with pillar encoder, MMDetection3D checkpoint, inference on Colab (T4, 17 minutes for 3,376 frames)</td>
+</tr>
+<tr>
+<td>Camera detector</td>
+<td>FCOS3D, MMDetection3D checkpoint, the clean detections of the daytime report</td>
+</tr>
+<tr>
+<td>LiDAR + camera</td>
+<td>LiDAR-primary merge: a camera box is kept only where no same-class LiDAR box lies within 2.5 m</td>
+</tr>
+<tr>
+<td>Radar</td>
+<td>All five radars, devkit validity filters, ego-motion-compensated radial velocity in the global frame; a return belongs to a box when it falls inside the footprint enlarged by 1 m</td>
+</tr>
+<tr>
+<td>Using radar</td>
+<td>Velocity: a camera-origin box takes the mean radar velocity of its returns; a LiDAR-origin box blends a fraction of radar velocity into its own, either a single weight fitted on training frames or one weight per distance bucket and box origin. Re-scoring: a logistic re-ranker over detector score, range, class and radar features, five-fold cross-validated across the validation scenes</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>nuScenes Detection Score (NDS), mAP, and the mean true-positive errors for translation (mATE) and velocity (mAVE); all ten classes are present, so the official values are directly comparable with the daytime report</td>
+</tr>
+</tbody>
+</table>
+<p>The degradation thins the detector's output less than it thins the cloud: on the validation frames it returns 115 boxes per frame instead of 119, and 29,386 boxes above score 0.3 instead of 31,816 (7.6 percent fewer). What it loses are the small and the far objects.</p>
+<h2>Results</h2>
+<p>The fused system loses accuracy at every range and radar velocity leaves that loss untouched; the velocity gain beyond 30 m is the one of the daytime report, give or take the noise. Official devkit values, lower error is better.</p>
+<table>
+<thead>
+<tr>
+<th>Range</th>
+<th>System</th>
+<th>NDS</th>
+<th>mAP</th>
+<th>mAVE, m/s</th>
+<th>NDS, 25 % LiDAR</th>
+<th>mAP, 25 % LiDAR</th>
+<th>mAVE, 25 % LiDAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full</td>
+<td>LiDAR</td>
+<td>0.578</td>
+<td>0.483</td>
+<td>0.522</td>
+<td>0.562</td>
+<td>0.445</td>
+<td>0.476</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>LiDAR + camera</td>
+<td>0.579</td>
+<td>0.486</td>
+<td>0.516</td>
+<td>0.562</td>
+<td>0.450</td>
+<td>0.476</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>+ radar velocity, 0.1</td>
+<td>0.579</td>
+<td>0.486</td>
+<td>0.516</td>
+<td>0.562</td>
+<td>0.450</td>
+<td>0.478</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>+ radar velocity, distance-aware</td>
+<td>0.580</td>
+<td>0.486</td>
+<td>0.509</td>
+<td>0.563</td>
+<td>0.450</td>
+<td>0.468</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>+ radar re-scoring</td>
+<td>0.568</td>
+<td>0.469</td>
+<td>0.545</td>
+<td>0.547</td>
+<td>0.434</td>
+<td>0.541</td>
+</tr>
+<tr>
+<td>Beyond 30 m</td>
+<td>LiDAR</td>
+<td>0.400</td>
+<td>0.257</td>
+<td>0.574</td>
+<td>0.369</td>
+<td>0.213</td>
+<td>0.634</td>
+</tr>
+<tr>
+<td>Beyond 30 m</td>
+<td>LiDAR + camera</td>
+<td>0.399</td>
+<td>0.257</td>
+<td>0.581</td>
+<td>0.370</td>
+<td>0.215</td>
+<td>0.626</td>
+</tr>
+<tr>
+<td>Beyond 30 m</td>
+<td>+ radar velocity, 0.1</td>
+<td>0.401</td>
+<td>0.257</td>
+<td>0.554</td>
+<td>0.372</td>
+<td>0.215</td>
+<td>0.604</td>
+</tr>
+<tr>
+<td>Beyond 30 m</td>
+<td>+ radar velocity, distance-aware</td>
+<td>0.402</td>
+<td>0.257</td>
+<td>0.552</td>
+<td>0.373</td>
+<td>0.215</td>
+<td>0.594</td>
+</tr>
+<tr>
+<td>Beyond 30 m</td>
+<td>+ radar re-scoring</td>
+<td>0.389</td>
+<td>0.236</td>
+<td>0.559</td>
+<td>0.361</td>
+<td>0.197</td>
+<td>0.622</td>
+</tr>
+</tbody>
+</table>
+<p>The left group is the clean LiDAR of the daytime report, the right group the same pipeline with 25 percent of the points. The translation error (mATE) of the fused system goes from 0.310 to 0.330 m at full range and from 0.520 to 0.548 m beyond 30 m, and radar leaves it unchanged, as it must.</p>
+<p>The full-range velocity error falls under degradation (0.516 to 0.476 m/s) because the set of matched objects changes, not because the velocities improve: the degraded detector finds 17,354 true positives instead of 18,403 and loses the far, hard ones first, and the error is averaged over what is found. Beyond 30 m, where the matched set is more alike, the error rises from 0.581 to 0.626 m/s as expected. Comparisons between systems within one condition are unaffected by this; comparisons of the same system across conditions should use the far-range rows.</p>
+<h2>Per class and by box origin</h2>
+<p>Per class and per box origin the pattern is the clean one, with every slice moving a few tenths of a percent toward radar and none moving enough to call a result.</p>
+<table>
+<thead>
+<tr>
+<th>Range</th>
+<th>System</th>
+<th>Car</th>
+<th>Truck</th>
+<th>Pedestrian</th>
+<th>Motorcycle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Beyond 30 m, clean</td>
+<td>LiDAR + camera</td>
+<td>0.457</td>
+<td>0.340</td>
+<td>0.291</td>
+<td>1.243</td>
+</tr>
+<tr>
+<td>Beyond 30 m, clean</td>
+<td>+ radar velocity</td>
+<td>0.442</td>
+<td>0.315</td>
+<td>0.289</td>
+<td>1.250</td>
+</tr>
+<tr>
+<td>Beyond 30 m, 25 % LiDAR</td>
+<td>LiDAR + camera</td>
+<td>0.538</td>
+<td>0.378</td>
+<td>0.342</td>
+<td>1.563</td>
+</tr>
+<tr>
+<td>Beyond 30 m, 25 % LiDAR</td>
+<td>+ radar velocity</td>
+<td>0.513</td>
+<td>0.355</td>
+<td>0.340</td>
+<td>1.539</td>
+</tr>
+</tbody>
+</table>
+<p>Velocity error in m/s by class beyond 30 m, fixed weight 0.1. Radar removes 4.6 percent of the far car error with degraded LiDAR against 3.3 percent clean, 6.1 against 7.4 percent on trucks, nothing on pedestrians in either condition, and 1.5 percent on motorcycles where the clean run showed no change. The differences between conditions are a few hundredths of a metre per second on a few hundred objects.</p>
+<p>The box-origin breakdown, computed on the fused system's true positives at score 0.3 and above with the analysis script of the daytime report, says the same:</p>
+<table>
+<thead>
+<tr>
+<th>Slice of the fused true positives</th>
+<th>Clean: n, change with radar</th>
+<th>25 % LiDAR: n, change with radar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All</td>
+<td>18,403, -1.4 %</td>
+<td>17,354, -1.8 %</td>
+</tr>
+<tr>
+<td>Moving, beyond 30 m</td>
+<td>853, -5.2 %</td>
+<td>785, -5.6 %</td>
+</tr>
+<tr>
+<td>Moving, with radar returns</td>
+<td>1,443, -3.9 %</td>
+<td>1,393, -4.9 %</td>
+</tr>
+<tr>
+<td>30 to 40 m</td>
+<td>2,874, -3.2 %</td>
+<td>2,525, -3.3 %</td>
+</tr>
+<tr>
+<td>40 to 50 m</td>
+<td>1,197, -4.1 %</td>
+<td>1,054, -5.6 %</td>
+</tr>
+<tr>
+<td>LiDAR-origin boxes</td>
+<td>18,289, -0.8 %</td>
+<td>17,193, -1.4 %</td>
+</tr>
+<tr>
+<td>Camera-origin boxes</td>
+<td>114, -34.0 %</td>
+<td>161, -19.1 %</td>
+</tr>
+<tr>
+<td>Parked, under 0.5 m/s</td>
+<td>12,619, +1.1 %</td>
+<td>11,930, +1.4 %</td>
+</tr>
+</tbody>
+</table>
+<p>The camera-origin boxes, the ones radar helps most, grow from 114 to 161 because fewer LiDAR boxes are there to suppress them, and their velocity gain shrinks from 34 to 19 percent because the extra survivors are harder objects. The share of true positives with at least one radar return is unchanged, 52 percent clean and 53 percent degraded. Parked objects get slightly worse with radar in both conditions, as in the daytime report: the radar's radial velocity on a stationary box carries a little noise that the LiDAR's own near-zero estimate does not.</p>
+<h2>What did not help</h2>
+<p>Letting radar re-rank the boxes' confidence costs accuracy with degraded LiDAR as it did with clean, and slightly more: NDS 0.562 to 0.547 at full range (clean 0.579 to 0.568), mAP 0.215 to 0.197 beyond 30 m (clean 0.257 to 0.236). A detector that has lost three quarters of its points still ranks its boxes better than a linear model over radar counts, so there is nothing for the re-ranker to fix, and radar returns on false positives mislead it as before. The re-ranker was refitted by five-fold cross-validation across the 23 validation scenes on the degraded detections, so it had every chance.</p>
+<h2>Limits of this measurement</h2>
+<ul>
+<li><strong>One degradation, one draw.</strong> A uniform random 25 percent of the points, drawn once. A second draw would put error bars on the 0.01 m/s differences; a heavier cut (10 percent) would say whether the far-range weights keep rising and whether the velocity gain eventually grows. Neither was run.</li>
+<li><strong>Not weather.</strong> Random thinning keeps the cloud's shape; rain and fog remove far and dark points first and add clutter close in. A weather-degraded LiDAR would lose far objects faster than this, which is where radar's gain sits, so this run likely understates radar's weather value and should not be quoted as a weather result. The night and rain rows of the day-and-night report are the measured weather numbers.</li>
+<li><strong>Detector not adapted.</strong> CenterPoint is used as published. A detector tuned for sparse clouds would lose less accuracy, and a tracker on top of either would use the radar velocity differently.</li>
+<li><strong>Subset size.</strong> 914 frames from 23 scenes; differences under about 0.01 NDS or 0.01 m/s are within noise, and the far-range rows rest on a few thousand true positives, the per-class rows on a few hundred.</li>
+<li><strong>Conventional radar and a LiDAR-primary design.</strong> As in the daytime report: the nuScenes radars report no elevation and a few hundred returns per frame, and the fused system keeps camera boxes only where LiDAR finds nothing, so radar's large effect on camera boxes touches 161 of 17,354 fused boxes. A camera-heavier merge, or a 4D radar, would show a larger contribution.</li>
+<li><strong>No training.</strong> The detectors are the public checkpoints, trained by their authors on the full nuScenes training set, which includes these scenes. Everything fitted here is a velocity weight on training frames or a re-ranker cross-validated on validation scenes.</li>
+</ul>
+<h2>Reproducing</h2>
+<p>The notebook <code>colab/nuscenes_inference.ipynb</code> is run on blob 01 with <code>LIDAR_KEEP_RATIO = 0.25</code> and <code>SKIP_CAMERA = True</code>; its inference cell inserts the <code>PointSample</code> step after the multi-sweep loader and writes <code>centerpoint_keep25.json</code>. Then, from the project folder:</p>
+<pre><code>.venv\Scripts\python.exe scripts\fuse.py --dataroot data\nuscenes --lidar detections\centerpoint_keep25.json --camera detections\fcos3d.json --out results\fused_keep25 --fit-on cv
+.venv\Scripts\python.exe scripts\blend_by_distance.py --dataroot data\nuscenes --lidar detections\centerpoint_keep25.json --camera detections\fcos3d.json --base results\fused_keep25\L+C.json --out results\fused_keep25_la\L+C+Ra.json --summary results\blend_by_distance_keep25.json
+.venv\Scripts\python.exe scripts\evaluate.py --dataroot data\nuscenes --results results\fused_keep25 --out results\eval_keep25
+.venv\Scripts\python.exe scripts\evaluate.py --dataroot data\nuscenes --results results\fused_keep25 --out results\eval_keep25 --min-range 30
+.venv\Scripts\python.exe scripts\evaluate.py --dataroot data\nuscenes --results results\fused_keep25_la --out results\eval_keep25_la
+.venv\Scripts\python.exe scripts\evaluate.py --dataroot data\nuscenes --results results\fused_keep25_la --out results\eval_keep25_la --min-range 30
+.venv\Scripts\python.exe scripts\analyze_lc_radar.py --dataroot data\nuscenes --base results\fused_keep25\L+C.json --radar results\fused_keep25\L+C+Rv.json --lidar results\fused_keep25\L.json --out results\analysis_lc_radar_keep25.json
+.venv\Scripts\python.exe scripts\degradation_tables.py --out results\degradation_keep25.json
+.venv\Scripts\python.exe scripts\make_degradation_figure.py
+</code></pre>
+<p>The <code>--blend-a</code> option of <code>fuse.py</code> pins the LiDAR velocity weight for a like-for-like row; it was not needed here because the refit returned the clean value. The clean rows come from <code>results/eval/</code>, <code>results/eval_la/</code> and <code>results/analysis_lc_radar.json</code> of the daytime report; the clean far-range summary was re-evaluated once to add per-class errors, with identical headline values.</p>
+<p>Files: <code>detections/centerpoint_keep25.json</code> (3,376 keyframes, Colab run of 12 October 2026); <code>results/fused_keep25/</code> (nine fused result files) and <code>results/fused_keep25_la/L+C+Ra.json</code>; <code>results/eval_keep25/summary_*.json</code> and <code>results/eval_keep25_la/summary_*.json</code> (devkit metrics with per-class AP and errors); <code>results/blend_by_distance_keep25.json</code> (refitted weights); <code>results/analysis_lc_radar_keep25.json</code> (box-origin breakdown); <code>results/degradation_keep25.json</code> (the tables above). The nuScenes data is not redistributed.</p>
+<h2>Sources</h2>
+<ul>
+<li>nuScenes: Caesar et al., <em>nuScenes: A multimodal dataset for autonomous driving</em>, CVPR 2020. Data used under CC BY-NC-SA 4.0 for non-commercial research.</li>
+<li>CenterPoint: Yin, Zhou and Krähenbühl, <em>Center-based 3D Object Detection and Tracking</em>, CVPR 2021. Checkpoint from MMDetection3D.</li>
+<li>FCOS3D: Wang et al., <em>FCOS3D: Fully Convolutional One-Stage Monocular 3D Object Detection</em>, ICCV Workshops 2021. Checkpoint from MMDetection3D.</li>
+<li>MMDetection3D: OpenMMLab, version 1.4.0.</li>
+</ul></body></html>
