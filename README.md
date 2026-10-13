@@ -43,11 +43,20 @@ files. Raw nuScenes data, detector outputs and fused result files are not in thi
 
 ## Main result
 
-Adding radar velocity to the LiDAR plus camera system leaves NDS and mAP unchanged and lowers the
-mean velocity error: by nothing at full range and 4.6 percent beyond 30 m in daytime, by 4.4 percent at
-full range and 4.6 to 6.7 percent beyond 30 m at night (averaged over the classes present), and by about
-5 percent in the three rain-at-night scenes. The camera-only detector gains far more (25 to 46 percent
-lower velocity error). Letting radar re-rank box confidence hurts in every condition with enough data.
+Radar velocity fusion leaves mAP unchanged in every experiment and lowers the mean velocity error of
+the LiDAR plus camera system by an amount set by how well the LiDAR itself measures velocity: little
+when it accumulates ten sweeps, a third to two fifths of the far-range error when it cannot.
+
+| Experiment | Data | What was varied | Radar's effect on LiDAR + camera velocity error beyond 30 m |
+| --- | --- | --- | --- |
+| 1. Daytime baseline | blob 01, 914 validation keyframes, 23 daytime scenes | nothing; camera, LiDAR and fused systems with and without radar | 0.581 to 0.554 m/s, -5 % |
+| 2. Night and rain | blob 10, 602 night keyframes, 120 of them in rain | the conditions | 0.760 to 0.725 m/s on the classes present, -5 %; -7 % with distance-aware weights; in rain 0.866 to 0.800 m/s at full range, -8 % |
+| 3. Sparser LiDAR | blob 01, a random 25 % of the LiDAR points | the point density | 0.626 to 0.604 m/s, -4 %; -5 % distance-aware |
+| 4. LiDAR without velocity | blob 01, LiDAR detector on one sweep instead of ten; then also range-dependent dropout | the LiDAR's own velocity estimate; then its far-range coverage | 1.354 to 0.867 m/s, -36 %; with dropout 1.329 to 0.790 m/s, -41 % |
+
+The camera-only detector gains far more in every condition, 25 to 53 percent of its velocity error
+depending on condition and range. Letting radar re-rank box confidence costs accuracy wherever the
+LiDAR's own confidence is informative, and helped only where the LiDAR was nearly blind at range.
 Details, limits and per-class tables are in the reports.
 
 ## Layout
@@ -61,7 +70,9 @@ Details, limits and per-class tables are in the reports.
 | `scripts/blend_by_distance.py` | distance-aware radar velocity weight, fitted on training frames |
 | `scripts/analyze_lc_radar.py` | breakdown of the radar effect by distance, speed, box origin and class |
 | `scripts/merge_detections.py` | union of detector outputs from several blobs |
-| `scripts/export_viz_data.py`, `scripts/make_report_figures.py`, `scripts/make_enhanced_figure.py`, `scripts/make_report_html.py` | animation data, figures and HTML reports |
+| `scripts/degradation_tables.py`, `scripts/velocity_degradation_tables.py` | comparison tables for the degraded-LiDAR experiments, from the evaluation summaries |
+| `scripts/export_viz_data.py`, `scripts/make_report_figures.py`, `scripts/make_enhanced_figure.py`, `scripts/make_degradation_figure.py`, `scripts/make_velocity_degradation_figure.py`, `scripts/make_report_html.py` | animation data, figures and HTML reports |
+| `scripts/make_status_figure.py`, `scripts/make_status_animation.py` | the project status figure and the animated results chart shown above |
 | `colab/nuscenes_inference.ipynb` | detector inference on a Google Colab GPU; writes nuScenes-format detection JSONs |
 | `results/*.json`, `results/eval*/` | evaluation summaries and breakdowns (small); fused result files are excluded |
 | `visualizing data/` | reports, figures, animations and the player |
