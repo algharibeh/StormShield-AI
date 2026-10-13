@@ -52,7 +52,7 @@ def results():
 
 
 PHASES = [
-    ("Phase 1", "Data collection and\nenvironmental modeling", "started",
+    ("Phase 1", "Data collection and\nenvironmental modeling", "groundwork on public data;\ncollection not started",
      ["nuScenes day, night and rain slices evaluated",
       "three LiDAR degradation models built and run",
       "evaluation pipeline: official devkit, per-range,\nper-class, per-box-origin"]),
@@ -62,7 +62,7 @@ PHASES = [
     ("Phase 3", "Integration with control\nand security systems", "not started", []),
     ("Phase 4", "Field validation and\ndeployment pathways", "not started", []),
 ]
-STATUS_FILL = {"started": 0.45, "first step": 0.2, "not started": 0.0}
+STATUS_FILL = {"groundwork on public data;\ncollection not started": 0.2, "first step": 0.2, "not started": 0.0}
 
 
 def draw_roadmap(ax):
@@ -72,21 +72,21 @@ def draw_roadmap(ax):
     for i, (name, title, status, items) in enumerate(PHASES):
         x0, w = i + 0.04, 0.92
         # phase card
-        ax.add_patch(FancyBboxPatch((x0, 0.56), w, 0.38, boxstyle="round,pad=0.01,rounding_size=0.02",
+        ax.add_patch(FancyBboxPatch((x0, 0.52), w, 0.42, boxstyle="round,pad=0.01,rounding_size=0.02",
                                     linewidth=1.2, edgecolor=LINE, facecolor="white"))
         # progress strip inside the card
-        ax.add_patch(FancyBboxPatch((x0 + 0.05, 0.60), w - 0.10, 0.045, boxstyle="round,pad=0,rounding_size=0.01",
+        ax.add_patch(FancyBboxPatch((x0 + 0.05, 0.555), w - 0.10, 0.045, boxstyle="round,pad=0,rounding_size=0.01",
                                     linewidth=0, facecolor=BLUE_LIGHT))
         frac = STATUS_FILL[status]
         if frac > 0:
-            ax.add_patch(FancyBboxPatch((x0 + 0.05, 0.60), (w - 0.10) * frac, 0.045,
+            ax.add_patch(FancyBboxPatch((x0 + 0.05, 0.555), (w - 0.10) * frac, 0.045,
                                         boxstyle="round,pad=0,rounding_size=0.01", linewidth=0, facecolor=BLUE))
-        ax.text(x0 + 0.05, 0.89, name, fontsize=11, fontweight="bold", color=INK, va="top")
-        ax.text(x0 + 0.05, 0.82, title, fontsize=9.5, color=INK2, va="top", linespacing=1.25)
-        ax.text(x0 + w - 0.05, 0.89, status, fontsize=9, color=BLUE if frac else MUTED, va="top", ha="right",
-                fontweight="bold" if frac else "normal")
+        ax.text(x0 + 0.05, 0.90, name, fontsize=11, fontweight="bold", color=INK, va="top")
+        ax.text(x0 + 0.05, 0.84, title, fontsize=9.5, color=INK2, va="top", linespacing=1.25)
+        ax.text(x0 + 0.05, 0.705, status, fontsize=8.5, color=BLUE if frac else MUTED, va="top", ha="left",
+                fontweight="bold" if frac else "normal", linespacing=1.2)
         # what exists, under the card
-        y = 0.50
+        y = 0.46
         for it in items:
             ax.text(x0 + 0.05, y, "●", fontsize=7, color=BLUE, va="top")
             ax.text(x0 + 0.11, y, it, fontsize=8.3, color=INK2, va="top", linespacing=1.2)
@@ -146,7 +146,7 @@ def main():
     fig = plt.figure(figsize=(14, 10), dpi=150, facecolor=SURFACE)
     fig.text(0.04, 0.965, "StormShield-AI: where the project stands", fontsize=18, fontweight="bold", color=INK, va="top")
     fig.text(0.04, 0.933, "Self-healing perception for harsh and adversarial environments. Four fusion experiments on nuScenes are complete;\n"
-             "they form the evaluation backbone of Phase 1 and the first sensor-trust result of Phase 2.",
+             "they form the evaluation groundwork for Phase 1, whose real-data collection has not started, and the first sensor-trust result of Phase 2.",
              fontsize=10, color=INK2, va="top", linespacing=1.3)
     # stat tiles
     tiles = [("4", "experiments, each with\nits own report"), ("1,516", "validation keyframes scored\nwith the official devkit"),

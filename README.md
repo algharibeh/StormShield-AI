@@ -1,11 +1,11 @@
 # StormShield-AI: radar late fusion on nuScenes, an inference-only measurement
 
-StormShield-AI is a self-healing perception framework for autonomous machines that must keep
-operating safely in harsh and adversarial environments: dust, rain, fog, low visibility and
-GNSS-denied settings, where sensors degrade and decisions still have to be sound. It builds on
-historical frame fusion and combines multi-sensor data, memory models and probabilistic trust
-scoring, so that a machine can keep an accurate picture of its surroundings and judge how far each
-sensor can be trusted when a primary sensor is degraded or compromised.
+StormShield-AI is intended for autonomous machines that must keep operating safely where sensors
+degrade: dust, rain, fog, low visibility and, in later stages, GNSS-denied or compromised settings. It
+is designed around decision-level fusion of camera, LiDAR and radar with condition-dependent sensor
+trust scoring, so that the machine can judge how far each sensor can be trusted when one is degraded
+and lean on the others. Fusion over past frames, memory models and edge deployment are later stages of
+the plan and have not been started.
 
 This repository holds the project's starting point: an inference-only measurement of what automotive
 radar adds to camera and LiDAR plus camera 3D object detection on nuScenes. Two public pretrained
@@ -14,7 +14,8 @@ unchanged, radar returns are associated to their boxes by geometry, and the fuse
 with the official nuScenes devkit. The only fitted quantities are a radar velocity blend weight per
 distance band and a small logistic re-ranker, both fitted outside the evaluated frames. Across four
 experiments, by day, at night, in rain and with the LiDAR degraded in three ways, these measurements
-form the evaluation backbone of the project's first phase and its first sensor-trust result: the share
+form the evaluation groundwork for the project's first phase, which is the collection of real
+multi-sensor data in degraded conditions and has not started, and its first sensor-trust result: the share
 of radar velocity the fusion learns to take rises from 0.1 with a healthy LiDAR to 0.8 to 1.0 once the
 LiDAR's own velocity estimate degrades.
 
