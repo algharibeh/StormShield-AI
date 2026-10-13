@@ -7,6 +7,16 @@ returns are associated to their boxes by geometry, and the fused results are sco
 nuScenes devkit. No network is trained or fine-tuned. The only fitted quantities are a radar velocity
 blend weight per distance band and a small logistic re-ranker, both fitted outside the evaluated frames.
 
+## Where the project stands
+
+StormShield-AI is a self-healing perception framework for harsh and adversarial environments. The
+work in this repository is its starting point: four fusion experiments that form the evaluation
+backbone of the first phase and the first sensor-trust result of the second.
+
+![StormShield-AI status: roadmap with what exists today, and the velocity error removed by radar velocity fusion in every measured condition](visualizing%20data/figures/stormshield_status.png)
+
+Rebuild the figure from the evaluation summaries with `python scripts/make_status_figure.py`.
+
 ## Reports
 
 | Report | Scope | File |
