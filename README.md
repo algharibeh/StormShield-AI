@@ -1,21 +1,31 @@
 # StormShield-AI: radar late fusion on nuScenes, an inference-only measurement
 
-This repository measures what automotive radar adds to camera and LiDAR plus camera 3D object
-detection on nuScenes. It is a measurement, not a trained model: two public pretrained detectors
-(CenterPoint for LiDAR, FCOS3D for camera, both MMDetection3D checkpoints) are run unchanged, radar
-returns are associated to their boxes by geometry, and the fused results are scored with the official
-nuScenes devkit. No network is trained or fine-tuned. The only fitted quantities are a radar velocity
-blend weight per distance band and a small logistic re-ranker, both fitted outside the evaluated frames.
+StormShield-AI is a self-healing perception framework for autonomous machines that must keep
+operating safely in harsh and adversarial environments: dust, rain, fog, low visibility and
+GNSS-denied settings, where sensors degrade and decisions still have to be sound. It builds on
+historical frame fusion and combines multi-sensor data, memory models and probabilistic trust
+scoring, so that a machine can keep an accurate picture of its surroundings and judge how far each
+sensor can be trusted when a primary sensor is degraded or compromised.
+
+This repository holds the project's starting point: an inference-only measurement of what automotive
+radar adds to camera and LiDAR plus camera 3D object detection on nuScenes. Two public pretrained
+detectors (CenterPoint for LiDAR, FCOS3D for camera, both MMDetection3D checkpoints) are run
+unchanged, radar returns are associated to their boxes by geometry, and the fused results are scored
+with the official nuScenes devkit. The only fitted quantities are a radar velocity blend weight per
+distance band and a small logistic re-ranker, both fitted outside the evaluated frames. Across four
+experiments, by day, at night, in rain and with the LiDAR degraded in three ways, these measurements
+form the evaluation backbone of the project's first phase and its first sensor-trust result: the share
+of radar velocity the fusion learns to take rises from 0.1 with a healthy LiDAR to 0.8 to 1.0 once the
+LiDAR's own velocity estimate degrades.
 
 ## Where the project stands
 
-StormShield-AI is a self-healing perception framework for harsh and adversarial environments. The
-work in this repository is its starting point: four fusion experiments that form the evaluation
-backbone of the first phase and the first sensor-trust result of the second.
-
 ![StormShield-AI status: roadmap with what exists today, and the velocity error removed by radar velocity fusion in every measured condition](visualizing%20data/figures/stormshield_status.png)
 
-Rebuild the figure from the evaluation summaries with `python scripts/make_status_figure.py`.
+![Animated: the velocity error of each measured condition drops from its value without radar to its value with radar velocity](visualizing%20data/figures/stormshield_results.gif)
+
+Rebuild both from the evaluation summaries with `python scripts/make_status_figure.py` and
+`python scripts/make_status_animation.py`.
 
 ## Reports
 
