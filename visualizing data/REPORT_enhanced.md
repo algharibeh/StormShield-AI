@@ -1,6 +1,6 @@
 # Radar Contribution to LiDAR-Camera Fusion, Day and Night
 
-*nuScenes, inference-only late fusion over two blobs. 11 October 2026. This report extends [REPORT.md](REPORT.md), the daytime-only study of 10 October, with the night and rain scenes of a second blob; the first report is kept unchanged.*
+*nuScenes, inference-only late fusion over two blobs. This report extends [REPORT.md](REPORT.md), the daytime-only study, with the night and rain scenes of a second blob; the first report is kept unchanged.*
 
 ![What radar adds to LiDAR + camera at night in rain, scene 1065](demo_scene-1065.gif)
 
@@ -38,7 +38,7 @@ The system under test, the fusion rules and the metrics are those of the first r
 
 ## Scale of the experiment
 
-The second blob added 3,420 keyframes to the 3,376 of the first, and a second 3-hour GPU run on Colab (this time on a paid T4 session) produced its detections on 11 October 2026. The night validation frames are sparser than the daytime ones: 7.5 annotated objects per frame against 33, and almost all of them cars and motorcycles.
+The second blob added 3,420 keyframes to the 3,376 of the first, and a second 3-hour GPU run on Colab (this time on a paid T4 session) produced its detections. The night validation frames are sparser than the daytime ones: 7.5 annotated objects per frame against 33, and almost all of them cars and motorcycles.
 
 | Quantity | Day (blob 01) | Night (blob 10) | Rain at night (subset of blob 10) |
 | --- | --- | --- | --- |
@@ -175,7 +175,7 @@ cd D:\moath\radar-fusion
 
 The animation data for the night scene was exported with `scripts/export_viz_data.py --base results/fused_b1b10/L+C.json --radar results/fused_b1b10/L+C+Rv.json --lidar results/fused_b1b10/L.json --scenes scene-1065` and rendered with `python play_enhancement.py --scene scene-1065 --save demo_scene-1065.mp4` (or `.gif`).
 
-Files: `detections/centerpoint_blob10.json` and `detections/fcos3d_blob10.json` (3,420 keyframes each, Colab run of 11 October 2026); `results/fused_b1b10/` (nine fused result files over 1,516 validation frames); `results/eval_b1b10/summary_<slice>.json` (devkit metrics with per-class AP and errors) and `present_<slice>.json` (averages over the classes present). The daytime rows are `results/eval/` and `results/eval_lc/` from the first report. The nuScenes data is not redistributed; the detection and evaluation JSONs are small enough to keep.
+Files: `detections/centerpoint_blob10.json` and `detections/fcos3d_blob10.json` (3,420 keyframes each); `results/fused_b1b10/` (nine fused result files over 1,516 validation frames); `results/eval_b1b10/summary_<slice>.json` (devkit metrics with per-class AP and errors) and `present_<slice>.json` (averages over the classes present). The daytime rows are `results/eval/` and `results/eval_lc/` from the first report. The nuScenes data is not redistributed; the detection and evaluation JSONs are small enough to keep.
 
 ## Sources
 

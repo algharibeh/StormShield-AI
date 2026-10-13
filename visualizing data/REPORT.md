@@ -1,6 +1,6 @@
 # Radar Contribution to LiDAR-Camera Fusion
 
-*nuScenes, inference-only late fusion. 10 October 2026.*
+*nuScenes, inference-only late fusion.*
 
 ![What radar adds to LiDAR + camera, scene 0101](demo_scene-0101.gif)
 

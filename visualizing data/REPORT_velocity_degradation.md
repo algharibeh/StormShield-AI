@@ -1,6 +1,6 @@
 # Radar Contribution When the LiDAR Cannot Measure Velocity
 
-*nuScenes, inference-only late fusion on the 914 daytime validation frames of blob 01, with the LiDAR detector run on a single sweep instead of ten, and on a single sweep with range-dependent point dropout. 12 October 2026. This report stands beside [REPORT.md](REPORT.md), the daytime study of 10 October, [REPORT_enhanced.md](REPORT_enhanced.md), the day-and-night study of 11 October, and [REPORT_degradation.md](REPORT_degradation.md), the uniform-thinning study of 12 October; all three are unchanged.*
+*nuScenes, inference-only late fusion on the 914 daytime validation frames of blob 01, with the LiDAR detector run on a single sweep instead of ten, and on a single sweep with range-dependent point dropout. This report stands beside [REPORT.md](REPORT.md), the daytime study, [REPORT_enhanced.md](REPORT_enhanced.md), the day-and-night study, and [REPORT_degradation.md](REPORT_degradation.md), the uniform-thinning study; all three are unchanged.*
 
 ## Summary
 
@@ -20,7 +20,7 @@ When the LiDAR detector runs on a single sweep instead of ten, its velocity esti
 
 ## Setup
 
-Everything except the LiDAR point cloud and one optional merge rule is the daytime report's: the same 914 validation keyframes of blob 01, the same ground truth, the same camera detections, the same radar association and evaluation. Two LiDAR conditions were produced on Colab on 12 October 2026 and fused on this PC.
+Everything except the LiDAR point cloud and one optional merge rule is the daytime report's: the same 914 validation keyframes of blob 01, the same ground truth, the same camera detections, the same radar association and evaluation. Two LiDAR conditions were produced on Colab and fused on this PC.
 
 | Item | Detail |
 | --- | --- |
@@ -162,7 +162,7 @@ The notebook `colab/nuscenes_inference.ipynb` is run on blob 01 with `SKIP_CAMER
 
 The two evaluations are repeated for `results\fused_<tag>_weak` and `results\fused_<tag>_la`, and the analysis for the weak merge. The clean camera-heavier control is `fuse.py` on `detections\centerpoint.json` with `--merge weak-lidar --out results\fused_weak`, evaluated into `results\eval_weak`. `scripts\velocity_degradation_tables.py` prints the tables (`results\velocity_degradation.json`) and `scripts\make_velocity_degradation_figure.py` draws the figure.
 
-Files: `detections/centerpoint_sw1.json` and `detections/centerpoint_sw1_far.json` (3,376 keyframes each, Colab run of 12 October 2026); `results/fused_sw1*/` and `results/fused_sw1_far*/` (fused result files); `results/eval_sw1*/summary_*.json`, `results/eval_sw1_far*/summary_*.json` and `results/eval_weak/summary_*.json` (devkit metrics with per-class AP and errors); `results/blend_by_distance_sw1.json` and `_sw1_far.json` (refitted weights); `results/analysis_lc_radar_sw1*.json` and `_sw1_far*.json` (box-origin breakdowns); `results/velocity_degradation.json` (the tables). The nuScenes data is not redistributed.
+Files: `detections/centerpoint_sw1.json` and `detections/centerpoint_sw1_far.json` (3,376 keyframes each); `results/fused_sw1*/` and `results/fused_sw1_far*/` (fused result files); `results/eval_sw1*/summary_*.json`, `results/eval_sw1_far*/summary_*.json` and `results/eval_weak/summary_*.json` (devkit metrics with per-class AP and errors); `results/blend_by_distance_sw1.json` and `_sw1_far.json` (refitted weights); `results/analysis_lc_radar_sw1*.json` and `_sw1_far*.json` (box-origin breakdowns); `results/velocity_degradation.json` (the tables). The nuScenes data is not redistributed.
 
 ## Sources
 

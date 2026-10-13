@@ -1,6 +1,6 @@
 # Radar Contribution to LiDAR-Camera Fusion with Degraded LiDAR
 
-*nuScenes, inference-only late fusion on the 914 daytime validation frames of blob 01 with a random 25 percent of the LiDAR points kept. 12 October 2026. This report stands beside [REPORT.md](REPORT.md), the daytime study of 10 October, and [REPORT_enhanced.md](REPORT_enhanced.md), the day-and-night study of 11 October; both are unchanged.*
+*nuScenes, inference-only late fusion on the 914 daytime validation frames of blob 01 with a random 25 percent of the LiDAR points kept. This report stands beside [REPORT.md](REPORT.md), the daytime study, and [REPORT_enhanced.md](REPORT_enhanced.md), the day-and-night study; both are unchanged.*
 
 ## Summary
 
@@ -114,7 +114,7 @@ The notebook `colab/nuscenes_inference.ipynb` is run on blob 01 with `LIDAR_KEEP
 
 The `--blend-a` option of `fuse.py` pins the LiDAR velocity weight for a like-for-like row; it was not needed here because the refit returned the clean value. The clean rows come from `results/eval/`, `results/eval_la/` and `results/analysis_lc_radar.json` of the daytime report; the clean far-range summary was re-evaluated once to add per-class errors, with identical headline values.
 
-Files: `detections/centerpoint_keep25.json` (3,376 keyframes, Colab run of 12 October 2026); `results/fused_keep25/` (nine fused result files) and `results/fused_keep25_la/L+C+Ra.json`; `results/eval_keep25/summary_*.json` and `results/eval_keep25_la/summary_*.json` (devkit metrics with per-class AP and errors); `results/blend_by_distance_keep25.json` (refitted weights); `results/analysis_lc_radar_keep25.json` (box-origin breakdown); `results/degradation_keep25.json` (the tables above). The nuScenes data is not redistributed.
+Files: `detections/centerpoint_keep25.json` (3,376 keyframes); `results/fused_keep25/` (nine fused result files) and `results/fused_keep25_la/L+C+Ra.json`; `results/eval_keep25/summary_*.json` and `results/eval_keep25_la/summary_*.json` (devkit metrics with per-class AP and errors); `results/blend_by_distance_keep25.json` (refitted weights); `results/analysis_lc_radar_keep25.json` (box-origin breakdown); `results/degradation_keep25.json` (the tables above). The nuScenes data is not redistributed.
 
 ## Sources
 

@@ -2,7 +2,7 @@
 table{border-collapse:collapse;margin:12px 0;font-size:14px}th,td{border:1px solid #ddd;padding:5px 9px}th{background:#f4f4f4}
 img,video{max-width:100%}code{background:#f4f4f4;padding:1px 4px}pre{background:#f4f4f4;padding:10px;overflow:auto}
 h1{font-size:28px}h2{margin-top:34px;border-bottom:1px solid #eee}em{color:#444}</style></head><body><h1>Radar Contribution to LiDAR-Camera Fusion, Day and Night</h1>
-<p><em>nuScenes, inference-only late fusion over two blobs. 11 October 2026. This report extends <a href="REPORT.md">REPORT.md</a>, the daytime-only study of 10 October, with the night and rain scenes of a second blob; the first report is kept unchanged.</em></p>
+<p><em>nuScenes, inference-only late fusion over two blobs. This report extends <a href="REPORT.md">REPORT.md</a>, the daytime-only study, with the night and rain scenes of a second blob; the first report is kept unchanged.</em></p>
 <p><video autoplay loop muted playsinline controls poster="" style="width:100%"><source src="demo_scene-1065.mp4" type="video/mp4"><img src="demo_scene-1065.gif" alt="animation"></video></p>
 <p><em>Scene 1065, rain at night, Singapore. Left: LiDAR + camera boxes and their velocity arrows. Right: the same boxes after radar velocity fusion, with radar returns (orange) and their Doppler arrows. Grey is ground truth. Green and red outlines mark boxes whose velocity error radar improved or worsened by more than 0.1 m/s. Replay it live with <code>python play_enhancement.py --scene scene-1065</code>; the daytime scenes of the first report are <code>scene-0101</code> and <code>scene-0093</code>.</em></p>
 <h2>Summary</h2>
@@ -62,7 +62,7 @@ h1{font-size:28px}h2{margin-top:34px;border-bottom:1px solid #eee}em{color:#444}
 </tbody>
 </table>
 <h2>Scale of the experiment</h2>
-<p>The second blob added 3,420 keyframes to the 3,376 of the first, and a second 3-hour GPU run on Colab (this time on a paid T4 session) produced its detections on 11 October 2026. The night validation frames are sparser than the daytime ones: 7.5 annotated objects per frame against 33, and almost all of them cars and motorcycles.</p>
+<p>The second blob added 3,420 keyframes to the 3,376 of the first, and a second 3-hour GPU run on Colab (this time on a paid T4 session) produced its detections. The night validation frames are sparser than the daytime ones: 7.5 annotated objects per frame against 33, and almost all of them cars and motorcycles.</p>
 <table>
 <thead>
 <tr>
@@ -626,7 +626,7 @@ h1{font-size:28px}h2{margin-top:34px;border-bottom:1px solid #eee}em{color:#444}
 .venv\Scripts\python.exe scripts\slice_metrics.py --summary results\eval_b1b10\summary_min0_max0_night.json --dataroot data\nuscenes --scene-keyword night
 </code></pre>
 <p>The animation data for the night scene was exported with <code>scripts/export_viz_data.py --base results/fused_b1b10/L+C.json --radar results/fused_b1b10/L+C+Rv.json --lidar results/fused_b1b10/L.json --scenes scene-1065</code> and rendered with <code>python play_enhancement.py --scene scene-1065 --save demo_scene-1065.mp4</code> (or <code>.gif</code>).</p>
-<p>Files: <code>detections/centerpoint_blob10.json</code> and <code>detections/fcos3d_blob10.json</code> (3,420 keyframes each, Colab run of 11 October 2026); <code>results/fused_b1b10/</code> (nine fused result files over 1,516 validation frames); <code>results/eval_b1b10/summary_&lt;slice&gt;.json</code> (devkit metrics with per-class AP and errors) and <code>present_&lt;slice&gt;.json</code> (averages over the classes present). The daytime rows are <code>results/eval/</code> and <code>results/eval_lc/</code> from the first report. The nuScenes data is not redistributed; the detection and evaluation JSONs are small enough to keep.</p>
+<p>Files: <code>detections/centerpoint_blob10.json</code> and <code>detections/fcos3d_blob10.json</code> (3,420 keyframes each); <code>results/fused_b1b10/</code> (nine fused result files over 1,516 validation frames); <code>results/eval_b1b10/summary_&lt;slice&gt;.json</code> (devkit metrics with per-class AP and errors) and <code>present_&lt;slice&gt;.json</code> (averages over the classes present). The daytime rows are <code>results/eval/</code> and <code>results/eval_lc/</code> from the first report. The nuScenes data is not redistributed; the detection and evaluation JSONs are small enough to keep.</p>
 <h2>Sources</h2>
 <ul>
 <li>nuScenes: Caesar et al., <em>nuScenes: A multimodal dataset for autonomous driving</em>, CVPR 2020. Data used under CC BY-NC-SA 4.0 for non-commercial research.</li>
