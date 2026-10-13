@@ -1,5 +1,7 @@
 # Radar Contribution to LiDAR-Camera Fusion with Degraded LiDAR
 
+*Part of the StormShield-AI project.*
+
 *nuScenes, inference-only late fusion on the 914 daytime validation frames of blob 01 with a random 25 percent of the LiDAR points kept. This report stands beside [REPORT.md](REPORT.md), the daytime study, and [REPORT_enhanced.md](REPORT_enhanced.md), the day-and-night study; both are unchanged.*
 
 ## Summary

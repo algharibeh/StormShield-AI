@@ -1,5 +1,7 @@
 # Radar Contribution to LiDAR-Camera Fusion
 
+*Part of the StormShield-AI project.*
+
 *nuScenes, inference-only late fusion.*
 
 ![What radar adds to LiDAR + camera, scene 0101](demo_scene-0101.gif)

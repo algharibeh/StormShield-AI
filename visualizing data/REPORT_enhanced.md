@@ -1,5 +1,7 @@
 # Radar Contribution to LiDAR-Camera Fusion, Day and Night
 
+*Part of the StormShield-AI project.*
+
 *nuScenes, inference-only late fusion over two blobs. This report extends [REPORT.md](REPORT.md), the daytime-only study, with the night and rain scenes of a second blob; the first report is kept unchanged.*
 
 ![What radar adds to LiDAR + camera at night in rain, scene 1065](demo_scene-1065.gif)

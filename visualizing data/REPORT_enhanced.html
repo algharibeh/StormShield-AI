@@ -2,6 +2,7 @@
 table{border-collapse:collapse;margin:12px 0;font-size:14px}th,td{border:1px solid #ddd;padding:5px 9px}th{background:#f4f4f4}
 img,video{max-width:100%}code{background:#f4f4f4;padding:1px 4px}pre{background:#f4f4f4;padding:10px;overflow:auto}
 h1{font-size:28px}h2{margin-top:34px;border-bottom:1px solid #eee}em{color:#444}</style></head><body><h1>Radar Contribution to LiDAR-Camera Fusion, Day and Night</h1>
+<p><em>Part of the StormShield-AI project.</em></p>
 <p><em>nuScenes, inference-only late fusion over two blobs. This report extends <a href="REPORT.md">REPORT.md</a>, the daytime-only study, with the night and rain scenes of a second blob; the first report is kept unchanged.</em></p>
 <p><video autoplay loop muted playsinline controls poster="" style="width:100%"><source src="demo_scene-1065.mp4" type="video/mp4"><img src="demo_scene-1065.gif" alt="animation"></video></p>
 <p><em>Scene 1065, rain at night, Singapore. Left: LiDAR + camera boxes and their velocity arrows. Right: the same boxes after radar velocity fusion, with radar returns (orange) and their Doppler arrows. Grey is ground truth. Green and red outlines mark boxes whose velocity error radar improved or worsened by more than 0.1 m/s. Replay it live with <code>python play_enhancement.py --scene scene-1065</code>; the daytime scenes of the first report are <code>scene-0101</code> and <code>scene-0093</code>.</em></p>

@@ -1,5 +1,7 @@
 # Radar in LiDAR-Camera Late Fusion: The Sequence of Experiments
 
+*Part of the StormShield-AI project.*
+
 *An inference-only measurement on nuScenes of what a conventional automotive radar adds to camera and LiDAR plus camera 3D detection, carried out as four experiments, each asked by the result of the one before. This report explains the sequence; each experiment also has its own report with the full tables: [REPORT.md](REPORT.md), [REPORT_enhanced.md](REPORT_enhanced.md), [REPORT_degradation.md](REPORT_degradation.md) and [REPORT_velocity_degradation.md](REPORT_velocity_degradation.md).*
 
 ## Overview

@@ -1,4 +1,4 @@
-# Radar late fusion on nuScenes: an inference-only measurement
+# StormShield-AI: radar late fusion on nuScenes, an inference-only measurement
 
 This repository measures what automotive radar adds to camera and LiDAR plus camera 3D object
 detection on nuScenes. It is a measurement, not a trained model: two public pretrained detectors

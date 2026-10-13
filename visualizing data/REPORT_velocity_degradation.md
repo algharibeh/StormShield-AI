@@ -1,5 +1,7 @@
 # Radar Contribution When the LiDAR Cannot Measure Velocity
 
+*Part of the StormShield-AI project.*
+
 *nuScenes, inference-only late fusion on the 914 daytime validation frames of blob 01, with the LiDAR detector run on a single sweep instead of ten, and on a single sweep with range-dependent point dropout. This report stands beside [REPORT.md](REPORT.md), the daytime study, [REPORT_enhanced.md](REPORT_enhanced.md), the day-and-night study, and [REPORT_degradation.md](REPORT_degradation.md), the uniform-thinning study; all three are unchanged.*
 
 ## Summary
