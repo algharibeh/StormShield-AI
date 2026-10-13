@@ -157,7 +157,6 @@ The night and rain rows measure what the literature says they should, but on a s
 - **One place at night.** All 15 night scenes come from Singapore's Holland Village, residential streets with parked cars and scooters. Night on a highway or in a city centre would have more far objects and more classes.
 - **Subset size.** Daytime 914 frames from 23 scenes, night 602 from 15. Differences under about 0.01 NDS or 0.01 m/s are within noise; the far-range night rows rest on a few hundred objects.
 - **Conventional radar and a LiDAR-primary design.** As in the first report: nuScenes radars report no elevation and a few hundred returns per frame, and the fused system keeps camera boxes only where LiDAR finds nothing, so radar's large effect on camera boxes touches few fused boxes. A camera-heavier system, or a 4D radar, would show a larger contribution.
-- **No training.** The detectors are the public checkpoints, trained by their authors on the full nuScenes training set, which includes both blobs' training scenes. Everything fitted here is a velocity weight on training scenes or a re-ranker cross-validated on validation scenes.
 
 ## Reproducing
 

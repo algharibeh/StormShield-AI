@@ -613,7 +613,6 @@ h1{font-size:28px}h2{margin-top:34px;border-bottom:1px solid #eee}em{color:#444}
 <li><strong>One place at night.</strong> All 15 night scenes come from Singapore's Holland Village, residential streets with parked cars and scooters. Night on a highway or in a city centre would have more far objects and more classes.</li>
 <li><strong>Subset size.</strong> Daytime 914 frames from 23 scenes, night 602 from 15. Differences under about 0.01 NDS or 0.01 m/s are within noise; the far-range night rows rest on a few hundred objects.</li>
 <li><strong>Conventional radar and a LiDAR-primary design.</strong> As in the first report: nuScenes radars report no elevation and a few hundred returns per frame, and the fused system keeps camera boxes only where LiDAR finds nothing, so radar's large effect on camera boxes touches few fused boxes. A camera-heavier system, or a 4D radar, would show a larger contribution.</li>
-<li><strong>No training.</strong> The detectors are the public checkpoints, trained by their authors on the full nuScenes training set, which includes both blobs' training scenes. Everything fitted here is a velocity weight on training scenes or a re-ranker cross-validated on validation scenes.</li>
 </ul>
 <h2>Reproducing</h2>
 <p>Everything runs from the project folder, with the two blobs extracted into one nuScenes root. The Colab notebook <code>colab/nuscenes_inference.ipynb</code> produced the blob 10 detections with its settings cell pointed at blob 10 and camera sweeps excluded from the extract.</p>

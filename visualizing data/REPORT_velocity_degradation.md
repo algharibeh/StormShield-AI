@@ -146,7 +146,6 @@ Radar re-scoring, which cost accuracy in every earlier condition, helps for the 
 - **Radar hurts pedestrians and close, slow objects.** The single weight is fitted over all LiDAR boxes and over-trusts radar close in; the distance-aware weights fix the range part but not the class part. A per-class weight, or a lower weight for pedestrians, is the obvious next step and was not tried.
 - **Subset size.** 914 frames from 23 daytime scenes; differences under about 0.01 NDS or 0.01 m/s are within noise.
 - **Conventional radar and a late-fusion design.** nuScenes radars report no elevation and a few hundred returns per frame, and about half of the fused true positives have a radar return at all, which caps what any radar velocity fusion can do here. A 4D radar, or a tracker that integrates Doppler over time, would do more.
-- **No training.** The detectors are the public checkpoints, trained by their authors on the full nuScenes training set, which includes these scenes. Everything fitted here is a velocity weight on training frames or a re-ranker cross-validated on validation scenes.
 
 ## Reproducing
 

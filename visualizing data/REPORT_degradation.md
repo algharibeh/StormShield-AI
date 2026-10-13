@@ -95,7 +95,6 @@ Letting radar re-rank the boxes' confidence costs accuracy with degraded LiDAR a
 - **Detector not adapted.** CenterPoint is used as published. A detector tuned for sparse clouds would lose less accuracy, and a tracker on top of either would use the radar velocity differently.
 - **Subset size.** 914 frames from 23 scenes; differences under about 0.01 NDS or 0.01 m/s are within noise, and the far-range rows rest on a few thousand true positives, the per-class rows on a few hundred.
 - **Conventional radar and a LiDAR-primary design.** As in the daytime report: the nuScenes radars report no elevation and a few hundred returns per frame, and the fused system keeps camera boxes only where LiDAR finds nothing, so radar's large effect on camera boxes touches 161 of 17,354 fused boxes. A camera-heavier merge, or a 4D radar, would show a larger contribution.
-- **No training.** The detectors are the public checkpoints, trained by their authors on the full nuScenes training set, which includes these scenes. Everything fitted here is a velocity weight on training frames or a re-ranker cross-validated on validation scenes.
 
 ## Reproducing
 

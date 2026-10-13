@@ -295,7 +295,6 @@ h1{font-size:28px}h2{margin-top:34px;border-bottom:1px solid #eee}em{color:#444}
 <li><strong>Detector not adapted.</strong> CenterPoint is used as published. A detector tuned for sparse clouds would lose less accuracy, and a tracker on top of either would use the radar velocity differently.</li>
 <li><strong>Subset size.</strong> 914 frames from 23 scenes; differences under about 0.01 NDS or 0.01 m/s are within noise, and the far-range rows rest on a few thousand true positives, the per-class rows on a few hundred.</li>
 <li><strong>Conventional radar and a LiDAR-primary design.</strong> As in the daytime report: the nuScenes radars report no elevation and a few hundred returns per frame, and the fused system keeps camera boxes only where LiDAR finds nothing, so radar's large effect on camera boxes touches 161 of 17,354 fused boxes. A camera-heavier merge, or a 4D radar, would show a larger contribution.</li>
-<li><strong>No training.</strong> The detectors are the public checkpoints, trained by their authors on the full nuScenes training set, which includes these scenes. Everything fitted here is a velocity weight on training frames or a re-ranker cross-validated on validation scenes.</li>
 </ul>
 <h2>Reproducing</h2>
 <p>The notebook <code>colab/nuscenes_inference.ipynb</code> is run on blob 01 with <code>LIDAR_KEEP_RATIO = 0.25</code> and <code>SKIP_CAMERA = True</code>; its inference cell inserts the <code>PointSample</code> step after the multi-sweep loader and writes <code>centerpoint_keep25.json</code>. Then, from the project folder:</p>
