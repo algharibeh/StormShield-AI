@@ -8,7 +8,7 @@
 
 ## Summary
 
-Adding radar to a LiDAR plus camera 3D detector on nuScenes improves velocity estimation and nothing else, and the improvement lives beyond 30 m: 4.6 percent lower velocity error there with a fixed radar weight, 5.0 percent with a distance-aware weight, against no change in detection accuracy at any range. Measured on 914 held-out validation frames with the official devkit, using public pretrained detectors and no training.
+Adding radar to a LiDAR plus camera 3D detector on nuScenes improves velocity estimation and nothing else, and the improvement lives beyond 30 m: 4.6 percent lower velocity error there with a fixed radar weight, 5.0 percent with a distance-aware weight, against no change in detection accuracy at any range. Measured on 914 held-out validation frames with the official devkit, using public pretrained detectors.
 
 - **What radar changes:** the velocity of fused boxes. Over the full range the mean velocity error moves from 0.516 to 0.509 m/s; beyond 30 m from 0.581 to 0.552 m/s; beyond 40 m from 0.616 to 0.596 m/s. NDS, mAP, translation and orientation error are unchanged to three decimals.
 - **Where it comes from:** moving objects far from the vehicle, where the LiDAR's sweep-based velocity runs out of points. Under 20 m radar adds nothing; between 30 and 50 m it removes 3 to 4 percent of the error; on moving objects beyond 30 m, 5 percent; on the few boxes that come from the camera rather than the LiDAR, 34 percent.
