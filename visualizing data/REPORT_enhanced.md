@@ -4,9 +4,9 @@
 
 *nuScenes, inference-only late fusion over two blobs. This report extends [REPORT.md](REPORT.md), the daytime-only study, with the night and rain scenes of a second blob; the first report is kept unchanged.*
 
-![What radar adds to LiDAR + camera at night in rain, scene 1065](demo_scene-1065.gif)
+![What radar adds to LiDAR + camera at night in rain, scene 1065, last keyframe](demo_scene-1065_last.png)
 
-*Scene 1065, rain at night, Singapore. Left: LiDAR + camera boxes and their velocity arrows. Right: the same boxes after radar velocity fusion, with radar returns (orange) and their Doppler arrows. Grey is ground truth. Green and red outlines mark boxes whose velocity error radar improved or worsened by more than 0.1 m/s. Replay it live with `python play_enhancement.py --scene scene-1065`; the daytime scenes of the first report are `scene-0101` and `scene-0093`.*
+*Scene 1065, rain at night, Singapore. Left: LiDAR + camera boxes and their velocity arrows. Right: the same boxes after radar velocity fusion, with radar returns (orange) and their Doppler arrows. Grey is ground truth. Green and red outlines mark boxes whose velocity error radar improved or worsened by more than 0.1 m/s. Replay it live with `python play_enhancement.py --scene scene-1065`; the daytime scenes of the first report are `scene-0101` and `scene-0093`. The animated version is [demo_scene-1065.gif](demo_scene-1065.gif), also as `demo_scene-1065.mp4`; the still above is its last keyframe, so the strip covers the whole scene.*
 
 ## Summary
 
@@ -175,7 +175,7 @@ cd D:\moath\radar-fusion
 .venv\Scripts\python.exe scripts\slice_metrics.py --summary results\eval_b1b10\summary_min0_max0_night.json --dataroot data\nuscenes --scene-keyword night
 ```
 
-The animation data for the night scene was exported with `scripts/export_viz_data.py --base results/fused_b1b10/L+C.json --radar results/fused_b1b10/L+C+Rv.json --lidar results/fused_b1b10/L.json --scenes scene-1065` and rendered with `python play_enhancement.py --scene scene-1065 --save demo_scene-1065.mp4` (or `.gif`).
+The animation data for the night scene was exported with `scripts/export_viz_data.py --base results/fused_b1b10/L+C.json --radar results/fused_b1b10/L+C+Rv.json --lidar results/fused_b1b10/L.json --scenes scene-1065` and rendered with `python play_enhancement.py --scene scene-1065 --save demo_scene-1065.mp4` (or `.gif`); the still at the top is `python play_enhancement.py --scene scene-1065 --frame -1 --save demo_scene-1065_last.png`.
 
 Files: `detections/centerpoint_blob10.json` and `detections/fcos3d_blob10.json` (3,420 keyframes each); `results/fused_b1b10/` (nine fused result files over 1,516 validation frames); `results/eval_b1b10/summary_<slice>.json` (devkit metrics with per-class AP and errors) and `present_<slice>.json` (averages over the classes present). The daytime rows are `results/eval/` and `results/eval_lc/` from the first report. The nuScenes data is not redistributed; the detection and evaluation JSONs are small enough to keep.
 

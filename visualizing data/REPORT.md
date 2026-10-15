@@ -4,9 +4,9 @@
 
 *nuScenes, inference-only late fusion.*
 
-![What radar adds to LiDAR + camera, scene 0101](demo_scene-0101.gif)
+![What radar adds to LiDAR + camera, scene 0101, last keyframe](demo_scene-0101_last.png)
 
-*Left: LiDAR + camera boxes and their velocity arrows. Right: the same boxes after radar velocity fusion, with radar returns (orange) and their Doppler arrows. Grey is ground truth. Green and red outlines mark boxes whose velocity error radar improved or worsened by more than 0.1 m/s. The strip tracks the velocity error of both systems through the scene. Replay it live with `python play_enhancement.py --scene scene-0101`.*
+*Left: LiDAR + camera boxes and their velocity arrows. Right: the same boxes after radar velocity fusion, with radar returns (orange) and their Doppler arrows. Grey is ground truth. Green and red outlines mark boxes whose velocity error radar improved or worsened by more than 0.1 m/s. The strip tracks the velocity error of both systems through the scene. Replay it live with `python play_enhancement.py --scene scene-0101`. The animated version is [demo_scene-0101.gif](demo_scene-0101.gif), also as `demo_scene-0101.mp4`; the still above is its last keyframe, so the strip covers the whole scene.*
 
 ## Summary
 
@@ -143,9 +143,10 @@ This folder is self-contained and needs only numpy and matplotlib:
 pip install -r requirements.txt
 python play_enhancement.py --scene scene-0101
 python play_enhancement.py --scene scene-0093 --save demo_scene-0093.gif
+python play_enhancement.py --scene scene-0101 --frame -1 --save demo_scene-0101_last.png
 ```
 
-A second rendered scene is in [demo_scene-0093.gif](demo_scene-0093.gif). The data files behind the player, one per scene under `data/`, carry ego pose, ground-truth boxes with velocity, the fused boxes with velocity before and after radar, the radar returns with compensated velocity, and the per-box velocity error. No images or point clouds are included. The parent project's `scripts/` folder holds the fusion (`fuse.py`), evaluation (`evaluate.py`), breakdown (`analyze_lc_radar.py`), distance-aware blend (`blend_by_distance.py`), data export (`export_viz_data.py`) and figure (`make_report_figures.py`) code, and `colab/nuscenes_inference.ipynb` is the notebook that produced the detections.
+A second rendered scene is in [demo_scene-0093.gif](demo_scene-0093.gif) (last keyframe: [demo_scene-0093_last.png](demo_scene-0093_last.png)). The data files behind the player, one per scene under `data/`, carry ego pose, ground-truth boxes with velocity, the fused boxes with velocity before and after radar, the radar returns with compensated velocity, and the per-box velocity error. No images or point clouds are included. The parent project's `scripts/` folder holds the fusion (`fuse.py`), evaluation (`evaluate.py`), breakdown (`analyze_lc_radar.py`), distance-aware blend (`blend_by_distance.py`), data export (`export_viz_data.py`) and figure (`make_report_figures.py`) code, and `colab/nuscenes_inference.ipynb` is the notebook that produced the detections.
 
 ## Sources
 

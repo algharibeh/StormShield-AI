@@ -12,6 +12,7 @@ Usage:
   python play_enhancement.py                      # first scene in ./data, live window
   python play_enhancement.py --scene scene-0103   # a specific scene
   python play_enhancement.py --save demo.mp4      # write a video (ffmpeg) or .gif (pillow)
+  python play_enhancement.py --frame -1 --save demo_last.png   # one keyframe as a still (PNG); -1 = the last
   python play_enhancement.py --fps 3 --range 60   # slower, wider view
 """
 import argparse
@@ -207,9 +208,10 @@ def main():
     ap.add_argument("--fps", type=float, default=2.5)
     ap.add_argument("--range", type=float, default=50.0, help="half-width of the view in metres")
     ap.add_argument("--arrow-scale", type=float, default=1.0, help="metres of arrow per m/s")
-    ap.add_argument("--save", default=None, help="write to .mp4 (needs ffmpeg) or .gif instead of showing")
+    ap.add_argument("--save", default=None, help="write to .mp4 (needs ffmpeg), .gif (pillow) or .png (one keyframe) instead of showing")
+    ap.add_argument("--frame", type=int, default=None, help="with --save <file>.png: the keyframe to draw (0-based; -1 = last); the error strip runs up to it")
     ap.add_argument("--loop", action="store_true", help="loop the live window")
-    ap.add_argument("--dpi", type=int, default=110, help="resolution of a saved video or GIF")
+    ap.add_argument("--dpi", type=int, default=110, help="resolution of a saved video, GIF or still")
     args = ap.parse_args()
 
     if args.save:
@@ -221,6 +223,18 @@ def main():
         if i == 0:
             pl.reset()
         return pl.draw_frame(i)
+
+    if args.save and os.path.splitext(args.save)[1].lower() == ".png":
+        # a single keyframe as a still: replay up to it so the error strip is filled to that point
+        n = len(scene["frames"])
+        idx = n - 1 if args.frame is None else args.frame
+        if idx < 0:
+            idx += n
+        for i in range(idx + 1):
+            update(i)
+        pl.fig.savefig(args.save, dpi=args.dpi, facecolor="white")
+        print("saved", args.save, f"(keyframe {idx + 1}/{n})")
+        return
 
     anim = FuncAnimation(pl.fig, update, frames=len(scene["frames"]), interval=1000 / args.fps, blit=False, repeat=args.loop)
     if args.save:

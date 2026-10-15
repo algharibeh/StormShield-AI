@@ -23,10 +23,12 @@ LiDAR's own velocity estimate degrades.
 
 ![StormShield-AI status: roadmap with what exists today, and the velocity error removed by radar velocity fusion in every measured condition](visualizing%20data/figures/stormshield_status.png)
 
-![Animated: the velocity error of each measured condition drops from its value without radar to its value with radar velocity](visualizing%20data/figures/stormshield_results.gif)
+![The velocity error of each measured condition without radar (grey) and with radar velocity (colour); final frame of the results animation](visualizing%20data/figures/stormshield_results_last.png)
 
-Rebuild both from the evaluation summaries with `python scripts/make_status_figure.py` and
-`python scripts/make_status_animation.py`.
+The animated version, in which each bar drops from its value without radar to its value with
+radar velocity, is [stormshield_results.gif](visualizing%20data/figures/stormshield_results.gif).
+Rebuild the status figure from the evaluation summaries with `python scripts/make_status_figure.py`;
+`python scripts/make_status_animation.py` writes the animation and its final frame.
 
 The written version, phase by phase and deliverable by deliverable against the project plan's own
 wording, with the file that evidences each row and a list of what is not claimed, is

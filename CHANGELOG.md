@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+- Printable stills beside the animations: the README shows the final frame of
+  the results animation (`stormshield_results_last.png`, written by
+  `scripts/make_status_animation.py`), and the two scene reports open with the
+  last keyframe of their animation (`demo_scene-<scene>_last.png`, written by
+  `play_enhancement.py --frame -1 --save`). The GIF and MP4 animations stay and
+  are linked next to each still, so the reports print without animated images
+  and read the same on GitHub. `scripts/make_report_html.py` swaps a still for
+  its MP4 twin in the HTML copies as it did for the GIFs.
+
 ## 0.1.0 — 2026-10-15
 
 First release of the StormShield-AI evaluation groundwork: an inference-only
