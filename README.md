@@ -28,6 +28,10 @@ LiDAR's own velocity estimate degrades.
 Rebuild both from the evaluation summaries with `python scripts/make_status_figure.py` and
 `python scripts/make_status_animation.py`.
 
+The written version, phase by phase and deliverable by deliverable against the project plan's own
+wording, with the file that evidences each row and a list of what is not claimed, is
+[docs/STATUS.md](docs/STATUS.md).
+
 ## Reports
 
 | Report | Scope | File |
