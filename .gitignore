@@ -12,3 +12,6 @@ results/edge_report_test.png
 __pycache__/
 *.pyc
 # keep: scripts/, colab/, visualizing data/ (small derived JSON + GIFs), results/*.json summaries, README.md
+
+# never commit petition or other Word documents kept beside the code
+*.docx

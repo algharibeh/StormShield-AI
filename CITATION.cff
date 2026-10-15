@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+type: software
+title: "StormShield-AI: radar late fusion on nuScenes, an inference-only measurement"
+authors:
+  - family-names: Algharibeh
+    given-names: Moath
+version: 0.1.0
+date-released: 2026-10-15
+repository-code: "https://github.com/algharibeh/StormShield-AI"
+license: MIT
+keywords:
+  - sensor fusion
+  - late fusion
+  - radar
+  - lidar
+  - 3d object detection
+  - nuscenes
+  - degraded sensing
+abstract: >-
+  Inference-only measurement of what automotive radar adds to LiDAR plus camera
+  3D object detection on nuScenes, as the evaluation groundwork for
+  StormShield-AI, a design for decision-level fusion with condition-dependent
+  sensor trust scoring. Two public pretrained detectors are run unchanged,
+  radar returns are associated to their boxes by geometry, and the fused
+  results are scored with the official nuScenes devkit across four
+  experiments: daytime, night and rain, sparser LiDAR, and LiDAR without a
+  usable velocity estimate. Radar velocity fusion leaves mAP unchanged and
+  lowers far-range velocity error by about 5 percent with a healthy LiDAR and
+  by a third to two fifths when the LiDAR cannot measure velocity. nuScenes
+  (CC BY-NC-SA 4.0) is not redistributed; the detector checkpoints are from
+  MMDetection3D (Apache 2.0).
