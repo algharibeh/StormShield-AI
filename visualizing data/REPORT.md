@@ -21,7 +21,7 @@ Behind the numbers are 20,256 camera images and 29,323 LiDAR sweeps run through 
 
 ## Setup
 
-The system under test is a LiDAR plus camera 3D detector built by late fusion of two public pretrained models, and the question is what changes when the five automotive radars are added to it. Nothing is trained; every number comes from the official nuScenes devkit on held-out validation frames.
+The system under test is a LiDAR plus camera 3D detector built by late fusion of two public pretrained models, and the question is what changes when the five automotive radars are added to it. The measurement is inference-only: the detectors run as published, the radar velocity weights and the re-ranker are fitted on training frames and applied unchanged to the held-out validation frames, and every number comes from the official nuScenes devkit.
 
 | Item | Detail |
 | --- | --- |
@@ -36,7 +36,7 @@ The system under test is a LiDAR plus camera 3D detector built by late fusion of
 
 ## Scale of the experiment
 
-The radar effect reported here rests on 18,403 matched true positives, 9,573 of them with radar returns inside the box, drawn from 202,521 radar returns over 914 validation frames. Getting there took a 2.4 GPU-hour inference run on Google Colab and a fusion stage on a laptop; nothing was trained.
+The radar effect reported here rests on 18,403 matched true positives, 9,573 of them with radar returns inside the box, drawn from 202,521 radar returns over 914 validation frames. Getting there took a 2.4 GPU-hour inference run on Google Colab and a fusion stage on a laptop, where the weights were fitted and the fused results evaluated.
 
 **What ran on Colab.** A free T4 session downloaded nuScenes trainval blob 01 and the metadata, 32 GB, built the dataset index for the 85 scenes present, and ran the two public detectors over every keyframe of those scenes, training and validation alike, so that the fusion weights could be fitted on one split and judged on the other.
 
