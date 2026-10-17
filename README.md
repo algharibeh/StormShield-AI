@@ -5,7 +5,11 @@ degrade: dust, rain, fog, low visibility and, in later stages, GNSS-denied or co
 is designed around decision-level fusion of camera, LiDAR and radar with condition-dependent sensor
 trust scoring, so that the machine can judge how far each sensor can be trusted when one is degraded
 and lean on the others. Fusion over past frames, memory models and edge deployment are later stages of
-the plan and have not been started.
+the plan and have not been started. The research behind it is the author's doctoral
+dissertation at Oakland University (proposal: "Principled Late Fusion of Camera, LiDAR, and
+Radar for Robust 3D Object Detection"), whose proposal, plan, literature protocol and records
+are kept in the companion repository github.com/algharibeh/dissertation; this repository holds
+the experimental code and results of that research, under the project's name.
 
 This repository holds the project's starting point: an inference-only measurement of what automotive
 radar adds to camera and LiDAR plus camera 3D object detection on nuScenes. Two public pretrained

@@ -51,7 +51,9 @@ started.
 The plan says the project "builds upon doctoral research on historical frame
 fusion." The doctoral research is the proposal "Principled Late Fusion of
 Camera, LiDAR, and Radar for Robust 3D Object Detection" (Oakland University,
-July 2026, revised October 2026), kept in a separate private repository; its
+July 2026, revised October 2026), kept in the companion repository
+github.com/algharibeh/dissertation (private: proposal, research plan, literature
+protocol and records); its
 first phase is a literature foundation and a benchmark decision, and it was
 agreed with the supervisor in October 2026 to proceed paper by paper. The
 four experiments here are the pilot measurement that fed that benchmark
