@@ -5,8 +5,8 @@ title: "StormShield-AI: radar late fusion on nuScenes, an inference-only measure
 authors:
   - family-names: Algharibeh
     given-names: Moath
-version: 0.1.0
-date-released: 2026-10-15
+version: 0.1.1
+date-released: 2026-10-25
 repository-code: "https://github.com/algharibeh/StormShield-AI"
 license: MIT
 keywords:

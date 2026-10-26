@@ -1,7 +1,12 @@
 # Changelog
 
-## Unreleased
+## 0.1.1 — 2026-10-25
 
+- The attribution paragraph of the README is reduced to the authorship
+  statement.
+- The daytime report describes its method as inference-only with fitted
+  fusion weights; the README and the status page name the companion
+  dissertation repository (October 17).
 - Printable stills beside the animations: the README shows the final frame of
   the results animation (`stormshield_results_last.png`, written by
   `scripts/make_status_animation.py`), and the two scene reports open with the

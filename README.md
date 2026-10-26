@@ -129,6 +129,5 @@ Each devkit evaluation loads the nuScenes metadata (2 to 3 minutes, 3 to 5 GB of
 
 nuScenes (Motional) is used under CC BY-NC-SA 4.0 for non-commercial research. Detector checkpoints
 are from MMDetection3D (OpenMMLab, Apache 2.0): CenterPoint (Yin, Zhou and Krähenbühl, CVPR 2021) and
-FCOS3D (Wang et al., ICCV Workshops 2021). The code in `scripts/` and `visualizing data/` was written
-by the author with the help of an AI coding assistant working under the author's direction; the
-experimental design, the decisions and the reports are the author's.
+FCOS3D (Wang et al., ICCV Workshops 2021). The code in `scripts/` and `visualizing data/`, the experimental
+design, the decisions and the reports are the author's.
